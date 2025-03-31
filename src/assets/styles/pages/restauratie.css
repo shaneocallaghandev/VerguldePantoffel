@@ -1,0 +1,21 @@
+.main-container {
+    display: flex;
+    flex-direction: row; /* Plaats de tekst en afbeelding naast elkaar */
+    justify-content: center; /* Centreer de tekst en afbeelding horizontaal */
+    align-items: center; /* Centreer de tekst en afbeelding verticaal */
+    min-height: 100vh; /* Zorg ervoor dat de container de volledige hoogte van het scherm inneemt */
+    padding: 20px; /* Voeg wat ruimte toe rond de inhoud */
+    gap: 20px; /* Voeg ruimte toe tussen de tekst en de afbeelding */
+  }
+  
+  .text-container {
+    display: flex;
+    flex-direction: column; /* Plaats tekstitems onder elkaar */
+    justify-content: center; /* Centreer de tekst verticaal */
+    text-align: left; /* Zorg ervoor dat de tekst links wordt uitgelijnd */
+  }
+  
+  .main-container img {
+    max-width: 50%; /* Zorg ervoor dat de afbeelding niet te groot is */
+    height: auto; /* Behoud de aspectratio van de afbeelding */
+  }

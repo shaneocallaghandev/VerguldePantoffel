@@ -1,0 +1,11 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #AF8260; /* Soft beige for a warm and cohesive look */
+  z-index: 1000; /* Ensure it stays on top of other elements */
+  text-align: center; /* Center the text */
+  padding: 2px 0; /* Adjust padding as needed */
+  color: #f5e8c7; /* Warm brown text color for contrast */
+  font-weight: bold; /* Make the text stand out */
+}

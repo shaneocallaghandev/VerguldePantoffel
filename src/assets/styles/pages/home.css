@@ -1,0 +1,58 @@
+.home-container {
+  display: flex;
+  background-color: #f9f4f0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+
+  margin: 0 auto; /* Center the container horizontally */
+  min-height: 100vh; /* Minimum height to ensure content is centered */
+  text-align: center; /* Center text if needed */
+  padding: 20px; /* Add some padding to avoid content touching the edges */
+}
+
+.home-container h1 {
+  font-size: 1.5rem; 
+  margin-bottom: 20px; /* Add some space between the heading and the carousel */
+}
+
+.home-container .slick-slider {
+  width: 100%; 
+  max-width: 800px; 
+  display: flex;
+  justify-content: center; 
+  overflow: visible; /* Ensure content is not clipped */
+}
+
+.home-container .slick-slide {
+  width: 100%; /* Override any inline styles setting width to 0 */
+  display: flex; /* Ensure the slides are displayed properly */
+  justify-content: center;
+  align-items: center;
+}
+
+.home-container .slick-slide img {
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+.logoTekst {
+  width: 500px; /* Pas de breedte aan om het logo groter te maken */
+  height: auto; /* Behoud de aspectratio van het logo */
+  margin-bottom: 20px; /* Voeg wat ruimte toe onder het logo */
+}
+
+/* Change the color of the arrows */
+.slick-prev:before,
+.slick-next:before {
+  color: #000; /* Set the arrow color to black */
+  font-size: 24px; /* Optional: Adjust the size of the arrows */
+}
+
+/* Optional: Add hover effect */
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: #bf7034; /* Change the color on hover */
+}
