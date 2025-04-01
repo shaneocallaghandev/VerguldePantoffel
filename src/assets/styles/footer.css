@@ -1,11 +1,15 @@
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
-  background-color: #AF8260; /* Soft beige for a warm and cohesive look */
+  background-color: #004225; /* Soft beige for a warm and cohesive look */
   z-index: 1000; /* Ensure it stays on top of other elements */
   text-align: center; /* Center the text */
-  padding: 2px 0; /* Adjust padding as needed */
-  color: #f5e8c7; /* Warm brown text color for contrast */
+  padding: 0px 0; /* Adjust padding as needed */
+  color: #f8f6f0; /* Warm brown text color for contrast */
   font-weight: bold; /* Make the text stand out */
+}
+
+footer p {
+  margin: 0; /* Remove default margin from the <p> element */
 }

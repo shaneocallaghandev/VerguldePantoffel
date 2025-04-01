@@ -1,8 +1,75 @@
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
+.main-container {
+  width: 100vw;
+  margin: 0 auto; /* Center the container horizontally */
+  min-height: 100vh; /* Minimum height to ensure content is centered */
+  padding: 20px; /* Add some padding to avoid content touching the edges */
+}
+
   
   .card-text {
     color: #555;
   }
+
+  /* Card container */
+.card {
+  position: relative;
+  width: 200px; /* Set a fixed width for the card */
+  height: 300px; /* Set a fixed height for the card */
+  overflow: hidden; /* Ensure content stays within the card */
+  border-radius: 8px; /* Optional: Rounded corners */
+}
+
+/* Image styling */
+.card-img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+  max-width: 100% !important;
+}
+
+/* Overlay container */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%; /* Initially small at the bottom */
+  background: rgba(73, 69, 69, 0.6); /* Semi-transparent black background */
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  transition: height 0.3s ease; /* Smooth slide-up effect */
+  overflow: hidden;
+}
+
+/* Title and description styling */
+.card-title {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.card-price {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* Hover effect */
+.card:hover .card-img {
+  transform: scale(1.01); /* Slight zoom effect on the image */
+}
+
+.card:hover .card-overlay {
+  height: 100%; /* Expand the overlay to cover the entire card */
+  justify-content: center; /* Center the content vertically */
+}

@@ -1,19 +1,21 @@
 .logo {
-  width: 50px; /* Adjust the width as needed */
+  width: 500px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
+  margin-right: auto;
 }
 
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #F5E8C7; /* Soft cream color for a warm and inviting look */
+  height: 45px;
+  background-color: #004225; /* Soft cream color for a warm and inviting look */
   z-index: 1000; /* Ensure it stays on top of other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
   padding: 5px 20px; /* Reduce padding to make the header smaller */
   display: flex;
   align-items: center; /* Vertically align the logo and menu items */
-  justify-content: center; /* Space out the logo and menu */
+  justify-content: space-between; /* Space between logo and menu items */
 }
 
 nav ul {
@@ -21,7 +23,8 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center; /* Adjust as needed */
+  gap: 50px; /* Space between menu items */
+  align-items: center; /* Adjust as needed */
 }
 
 nav ul li {
@@ -32,7 +35,7 @@ nav ul li a {
   text-decoration: none;
   padding: 5px 10px; /* Reduce padding to make the text fit better */
   display: block;
-  color: #8B4513; /* Warm brown for text */
+  color: #fafafa; /* Warm brown for text */
   font-weight: bold; /* Makes the links stand out */
   font-size: 16px; /* Increase text size slightly */
   transition: color 0.3s ease; /* Smooth transition for hover effect */

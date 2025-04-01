@@ -1,11 +1,13 @@
 .main-container {
-    display: flex;
-    flex-direction: row; /* Plaats de tekst en afbeelding naast elkaar */
-    justify-content: center; /* Centreer de tekst en afbeelding horizontaal */
-    align-items: center; /* Centreer de tekst en afbeelding verticaal */
-    min-height: 100vh; /* Zorg ervoor dat de container de volledige hoogte van het scherm inneemt */
-    padding: 20px; /* Voeg wat ruimte toe rond de inhoud */
-    gap: 20px; /* Voeg ruimte toe tussen de tekst en de afbeelding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin: 0 auto; /* Center the container horizontally */
+  min-height: 100vh; /* Minimum height to ensure content is centered */
+  text-align: center; /* Center text if needed */
+  padding: 20px; /* Add some padding to avoid content touching the edges */
   }
   
   .text-container {
