@@ -7,6 +7,5 @@
     width: 100vw;
     margin: 0 auto; /* Center the container horizontally */
     min-height: 100vh; /* Minimum height to ensure content is centered */
-    text-align: center; /* Center text if needed */
-    padding: 20px; /* Add some padding to avoid content touching the edges */
+    text-align: center; /* Center text if needed */ /* Add some padding to avoid content touching the edges */
     }

@@ -35,7 +35,8 @@
   max-width: 100%; /* Ensure images are responsive */
   height: auto; /* Maintain aspect ratio */
   display: block;
-  border: #000 solid 0.01px; /* Optional: Add a border around the images */
+  border-radius: 4px;
+  border: #bebcbc solid 0.001px; /* Optional: Add a border around the images */
 }
 
 .logoTekst {
@@ -59,12 +60,14 @@
 
 /* Add space below the carousel */
 .home-carousel {
+  margin-top: 20px; /* Add space above the carousel */
   margin-bottom: 200px; /* Add space below the carousel */
 }
 
 /* Add space above the info-container */
 .info-container {
   margin-top: 200px; /* Add space above the info-container */
+  margin-bottom: 200px;
 }
 
 /* Extra Section Below the Carousel */
@@ -73,7 +76,7 @@
   flex-direction: row;
   margin-top: 40px; /* Add space above the -container */
   padding: 20px; /* Add padding for spacing */
-  background-color: #f9f9f9; /* Light background color for contrast */
+  background-color: #f7f5ee; /* Light background color for contrast */
   border-radius: 8px; /* Optional: Rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
 }
@@ -85,7 +88,7 @@
 }
 
 .info-container p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #555; /* Softer text color for the paragraph */
   line-height: 1.6;
   margin-bottom: 20px;
@@ -94,6 +97,15 @@
 .info-container .info-image {
   max-width: 100%; /* Make the image responsive */
   height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: Rounded corners */
+  border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+}
+
+.info-container .info-text {
+  flex: 1; /* Allow the text to take up available space */
+  margin-left: 20px; /* Space between image and text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the text vertically */
+  text-align: left;
 }

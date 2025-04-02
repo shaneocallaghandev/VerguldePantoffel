@@ -5,12 +5,17 @@
   padding: 20px; /* Add some padding to avoid content touching the edges */
 }
 
-  
-  .card-text {
+
+  /* Card container */
+
+ .card-text {
     color: #555;
   }
 
-  /* Card container */
+.container{
+    margin-left: 175px; /* Match the width of the sidebar */
+  }
+  
 .card {
   position: relative;
   width: 200px; /* Set a fixed width for the card */
@@ -79,10 +84,10 @@
   position: fixed; /* Fix the sidebar to the left side of the screen */
   top: 50px; 
   left: 0;
-  width: 175px !important; /* Set a fixed width for the sidebar */
+  width: 160px !important; /* Set a fixed width for the sidebar */
   height: 100vh; /* Full height of the viewport */
   background-color: #5f5e5b !important; /* Your desired color */
-  border-radius: 0 15px 15px 0; /* Rounded corners on the right side */
+  border-radius: 0 2px 15px 0; /* Rounded corners on the right side */
   padding: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 1.5); /* Optional: Add a subtle shadow */
   z-index: 1000; /* Ensure the sidebar stays on top of other content */
@@ -91,7 +96,6 @@
 .nav-link {
   color: #ffffff !important; /* White text for links */
   transition: color 0.3s ease, background-color 0.3s ease;
-  width: 100%; /* Ensure the button spans the full width of the sidebar */
   text-align: left; /* Align text to the left */
   border-radius: 8px; /* Optional: Add rounded corners */
 }

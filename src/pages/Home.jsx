@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1>Welkom! </h1>
+      <h1>Welkom bij De Vergulde Pantoffel </h1>
 
       <Carousel {...settings} className="home-carousel">
         <div>
@@ -41,17 +41,17 @@ const Home = () => {
       <div className="info-container">
         <div className="info-text">
         <p>
-          Welkom bij Vergulde Pantoffel! Wij zijn gespecialiseerd in de verkoop
-          en restauratie van antieke meubels. Onze passie voor vakmanschap en
-          oog voor detail maken ons uniek.
+        Welkom op de website van De Vergulde Pantoffel. Al vijf en twintig jaar restaureer en verkoop ik antiek design en verlichting. Tevens heb ik in opdracht veel tafels gemaakt van kersen, noten of eikenhout.
+        Voor alle (antiek) meubelrestauraties van fineer tot politoerschade kunt u in mijn atelier te Dordrecht terecht.
+        Elk meubel wordt voor u persoonlijk in orde gemaakt en in uw interieur geplaatst waarbij eventuele specifieke aanpassingen aan de indeling uitvoerig met u besproken worden.
         </p>
         <p>
-          Neem een kijkje in onze winkel of neem contact met ons op voor meer
+          Neem een kijkje in de winkel of neem contact op voor meer
           informatie over onze diensten.
         </p>
         </div>
-        <div className="info-image">
-        <img src={welkomFoto} alt="Over Ons" className="extra-image" />
+        <div className="info-image-container">
+        <img src={welkomFoto} alt="Welkom Foto" className="info-image" />
         </div>
       </div>
     </div>

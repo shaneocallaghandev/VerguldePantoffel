@@ -1,0 +1,85 @@
+
+/* Parent container with the background image */
+.detail-page {
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    background-image: url("../../images/background.jpg"); /* Replace with the correct path to your image */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    display: flex; /* Use flexbox to center the content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .detail-page::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.19); /* Add a dark overlay */
+    z-index: 1;
+}
+
+    /* Container for the detail card */
+.detail-container {
+    position: relative;
+    z-index: 2; /* Ensure the content is above the overlay */
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f5ee;
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+  }
+  
+  .detail-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  
+  .detail-info {
+    text-align: center;
+  }
+  
+  .detail-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .detail-info p {
+    margin: 5px 0;
+  }
+  
+  .back-button{
+    background-color: #525855; /* Soft cream color for a warm and inviting look */
+    color: #fafafa; /* Warm brown for text */
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  .back-button:hover {
+    background-color: #D4A373; /* Change color on hover for a warm effect */
+  }

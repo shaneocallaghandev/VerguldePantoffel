@@ -1,6 +1,7 @@
 import "../assets/styles/pages/Verkoop.css";
 import items from "../data";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Verkoop = () => {
 
@@ -57,6 +58,7 @@ const Verkoop = () => {
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     {filteredItems.map((item) => (
       <div key={item.id} className="col d-flex justify-content-center">
+        <Link to={`/detail/${item.id}`} style={{ textDecoration: "none" }}>
         <div className="card hover-card shadow-sm">
           <img
             src={item.image}
@@ -77,6 +79,7 @@ const Verkoop = () => {
             </p>
               </div>
             </div>
+            </Link>
           </div>
         ))}
       </div>

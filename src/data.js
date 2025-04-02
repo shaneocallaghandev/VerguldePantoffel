@@ -2,6 +2,7 @@ import beeld1 from "./assets/images/beeld1.jpg";
 import beeld2 from "./assets/images/beeld2.jpg";
 import buffetkast1 from "./assets/images/buffetkast1.jpg";
 import buffetkast2 from "./assets/images/buffetkast2.jpg";
+import lamp1 from "./assets/images/lamp1.jpg";
 
 // Define all items with a category property
 const items = [
@@ -41,6 +42,15 @@ const items = [
     sold: false,
     category: "Buffetkasten", // Category property
   },
+  {
+    id:5,
+    name: "Art Deco Lamp",
+    image: lamp1,
+    description: "Een uitzonderlijke Art Déco hanglamp met drie hangkappen en een midden schotel in zacht oranje roze glas.",
+    price: 200.0,
+    sold: true,
+    category: "Verlichting",
+  }
 ];
 
 export default items;
