@@ -18,14 +18,21 @@ const Home = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1200,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
   };
 
   return (
     <div className="home-container">
-      <h1>Welkom bij De Vergulde Pantoffel </h1>
+      <div className="carousel-container">
+
+      <div className="welcome-text-box">
+        <h2>Welkom bij De Vergulde Pantoffel</h2>
+        <p>Antiek & Brocante</p>
+      </div>
 
       <Carousel {...settings} className="home-carousel">
         <div>
@@ -38,6 +45,8 @@ const Home = () => {
         <img src={image4} alt="Impressie 4" />
         </div>
       </Carousel>
+    </div>
+
       <div className="info-container">
         <div className="info-text">
         <p>

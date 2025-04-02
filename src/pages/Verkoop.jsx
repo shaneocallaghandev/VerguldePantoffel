@@ -15,19 +15,24 @@ const Verkoop = () => {
       ? items
       : items.filter((item) => item.category === selectedCategory);
 
+      const truncateText = (text, maxLength) => {
+        if (text.length > maxLength) {
+          return text.substring(0, maxLength) + "...";
+        }
+        return text;
+      };
+      
+
   return (
   <div className="main-container d-flex flex-row align-items-center">
 
     {/* Sidebar */}
     <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 custom-sidebar">
           <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <a
-              className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-            >
+            <a className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
               <span className="fs-5 d-none d-sm-inline">Categorieën</span>
             </a>
-            <ul
-              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+            <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
               id="menu"
             >
               {categories.map((category, index) => (
@@ -66,7 +71,7 @@ const Verkoop = () => {
             alt={item.name}
           />
           <div className="card-overlay">
-          <p className="card-description">{item.description}</p>
+          <p className="card-description">{truncateText(item.description, 100)}</p>
             <p className="card-category">
               <strong>Categorie:</strong> {item.category}
             </p>

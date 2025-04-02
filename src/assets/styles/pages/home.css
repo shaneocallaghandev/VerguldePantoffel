@@ -11,9 +11,39 @@
   padding-top: 85px;
 }
 
-.home-container h1 {
-  font-size: 1.5rem; 
-  margin-bottom: 20px; /* Add some space between the heading and the carousel */
+.carousel-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  margin-top: 20px; /* Add some spacing above the carousel */
+  width: 80%; /* Ensure the container takes full width */
+}
+
+.welcome-text-box {
+  flex: 1; /* Allow the text box to take up proportional space */
+  max-width: 300px; /* Limit the width of the text box */
+  padding: 20px; /* Add padding inside the box */
+  font-family: "Georgia", serif; /* Use a nice serif font */
+  display: flex; /* Use Flexbox for alignment */
+  flex-direction: column; /* Stack the content vertically */
+  align-items: flex-start; /* Align content to the top-left */
+  justify-content: flex-start; /* Ensure content starts at the top */
+}
+
+.welcome-text-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #812424; /* Optional: Add a custom color */
+}
+
+.welcome-text-box p {
+  font-size: 1.4rem;
+  color: #555; /* Subtle text color */
+}
+
+.home-carousel {
+  flex: 2; /* Allow the carousel to take up more space */
+  max-width: 800px; /* Limit the width of the carousel */
 }
 
 .home-container .slick-slider {
@@ -45,6 +75,17 @@
   margin-bottom: 20px; /* Voeg wat ruimte toe onder het logo */
 }
 
+/* Adjust the position of the arrows */
+.slick-prev {
+  left: 40px; /* Move the left arrow closer to the carousel */
+  z-index: 2; /* Ensure the arrow is above the carousel */
+}
+
+.slick-next {
+  right: 40px; /* Move the right arrow closer to the carousel */
+  z-index: 2; /* Ensure the arrow is above the carousel */
+}
+
 /* Change the color of the arrows */
 .slick-prev:before,
 .slick-next:before {
@@ -61,7 +102,7 @@
 /* Add space below the carousel */
 .home-carousel {
   margin-top: 20px; /* Add space above the carousel */
-  margin-bottom: 200px; /* Add space below the carousel */
+  margin-bottom: 100px; /* Add space below the carousel */
 }
 
 /* Add space above the info-container */
@@ -108,4 +149,6 @@
   flex-direction: column;
   justify-content: center; /* Center the text vertically */
   text-align: left;
+  padding: 20px; /* Add padding inside the text box */
+  font-family: "Georgia", serif; /* Use a nice serif font */
 }
