@@ -1,14 +1,61 @@
 import "../assets/styles/pages/Verkoop.css";
 import items from "../data";
+import { useState } from "react";
 
 const Verkoop = () => {
-  return (<div className="main-container">
+
+  // State to track the selected category
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = ["All", ...new Set(items.map((item) => item.category))];
+ 
+  // Filter items based on the selected category
+  const filteredItems =
+    selectedCategory === "All"
+      ? items
+      : items.filter((item) => item.category === selectedCategory);
+
+  return (
+  <div className="main-container d-flex flex-row align-items-center">
+
+    {/* Sidebar */}
+    <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 custom-sidebar">
+          <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <a
+              className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <span className="fs-5 d-none d-sm-inline">Categorieën</span>
+            </a>
+            <ul
+              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+              id="menu"
+            >
+              {categories.map((category, index) => (
+                <li key={index} className="nav-item">
+                <button
+                  className={`nav-link align-middle px-0 text-white ${
+                    selectedCategory === category ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    width: "100%",
+                  }}
+                >
+                  <span className="ms-1 d-none d-sm-inline">{category}</span>
+                </button>
+              </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+    {/* Main Content */}      
     <div className="container py-5">
-      <h2 className="text-center mb-4">Onze Verkoopbare Producten</h2>
-      <p className="text-center mb-5">Bekijk de verschillende items die we aanbieden.</p>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-    {items.map((item) => (
+    {filteredItems.map((item) => (
       <div key={item.id} className="col d-flex justify-content-center">
         <div className="card hover-card shadow-sm">
           <img

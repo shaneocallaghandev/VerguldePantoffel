@@ -73,3 +73,38 @@
   height: 100%; /* Expand the overlay to cover the entire card */
   justify-content: center; /* Center the content vertically */
 }
+
+/* Sidebar styling */
+.custom-sidebar {
+  position: fixed; /* Fix the sidebar to the left side of the screen */
+  top: 50px; 
+  left: 0;
+  width: 175px !important; /* Set a fixed width for the sidebar */
+  height: 100vh; /* Full height of the viewport */
+  background-color: #5f5e5b !important; /* Your desired color */
+  border-radius: 0 15px 15px 0; /* Rounded corners on the right side */
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1.5); /* Optional: Add a subtle shadow */
+  z-index: 1000; /* Ensure the sidebar stays on top of other content */
+}
+
+.nav-link {
+  color: #ffffff !important; /* White text for links */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  width: 100%; /* Ensure the button spans the full width of the sidebar */
+  text-align: left; /* Align text to the left */
+  border-radius: 8px; /* Optional: Add rounded corners */
+}
+
+.nav-link.active {
+  color: #ddbb21 !important; /* Highlight color for the active category text */
+  font-weight: bold; /* Make the active category text bold */
+}
+.nav-link:hover {
+  color: #2c3e50 !important; /* Bootstrap primary color on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+}
+
+.min-vh-100 {
+  min-height: 100vh; /* Ensure the sidebar spans the full viewport height */
+}

@@ -1,19 +1,16 @@
 //Refactoring of Itembrowser to seperate it from Verkoop page
-
-
 import PropTypes from "prop-types";
-
-
-
 
 ItemBrowser.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
+      sold: PropTypes.bool.isRequired,
       category: PropTypes.string.isRequired,
     })
   ).isRequired,
