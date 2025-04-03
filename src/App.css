@@ -43,6 +43,6 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif; /* Use the imported font */
+  font-family: "Georgia", serif; /* Use a nice serif font */
   font-weight: 600; /* Adjust the weight as needed */
 }

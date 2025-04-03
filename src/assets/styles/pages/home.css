@@ -67,6 +67,7 @@
   display: block;
   border-radius: 4px;
   border: #bebcbc solid 0.001px; /* Optional: Add a border around the images */
+  box-shadow: 0 4px 6px rgba(0, 0, 0.15, 0.15); /* Optional: Add a shadow for depth */
 }
 
 .logoTekst {
@@ -151,4 +152,43 @@
   text-align: left;
   padding: 20px; /* Add padding inside the text box */
   font-family: "Georgia", serif; /* Use a nice serif font */
+  max-width: 800px;
+}
+
+
+.home-to-verkoop-router {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  text-align: center;
+  margin-top: 0px; /* Add some spacing above the button */
+  margin-bottom: 20px;
+  padding: 10px; /* Add padding for better spacing */
+  background-color: #c4b189; /* Light background color for contrast */
+  color: white; /* Ensure text is readable */
+  font-size: 1.1rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  border-radius: 3px; /* Rounded corners */
+  box-shadow: #000000 0px 0px 2.5px; /* Optional: Add a shadow for depth */
+  text-decoration: none; /* Remove underline from link */
+  font-family: "Georgia", serif; /* Use a nice serif font */
+}
+
+.custom-button {
+  background-color: #5e4206; /* Set the button background color */
+  color: white; /* Set the button text color */
+  padding: 10px 20px; /* Add padding inside the button */
+  border-radius: 5px; /* Rounded corners for the button */
+  text-decoration: none; /* Remove underline from the button text */
+  font-size: 1rem; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  outline: none;
+  box-shadow: none; /* Remove shadow */
+}
+
+.custom-button:hover {
+  background-color: #aaa292; /* Darker color on hover */
+  color: #fff; /* Ensure text remains readable */
 }

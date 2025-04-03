@@ -27,11 +27,12 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="carousel-container">
 
+      <div className="carousel-container">
       <div className="welcome-text-box">
         <h2>Welkom bij De Vergulde Pantoffel</h2>
         <p>Antiek & Brocante</p>
+        <p>Gevestigd in het hart van historisch Dordrecht.</p>
       </div>
 
       <Carousel {...settings} className="home-carousel">
@@ -47,7 +48,7 @@ const Home = () => {
       </Carousel>
     </div>
 
-      <div className="info-container">
+    <div className="info-container">
         <div className="info-text">
         <p>
         Welkom op de website van De Vergulde Pantoffel. Al vijf en twintig jaar restaureer en verkoop ik antiek design en verlichting. Tevens heb ik in opdracht veel tafels gemaakt van kersen, noten of eikenhout.
@@ -62,7 +63,13 @@ const Home = () => {
         <div className="info-image-container">
         <img src={welkomFoto} alt="Welkom Foto" className="info-image" />
         </div>
-      </div>
+    </div>
+
+    <div className ="home-to-verkoop-router">
+      <p>Bekijk de collectie</p>
+      <a href="/verkoop" className="custom-button">Naar Verkoop</a>
+    </div>
+
     </div>
   );
 };

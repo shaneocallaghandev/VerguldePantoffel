@@ -7,6 +7,8 @@ import Restauratie from "./pages/Restauratie";
 import Contact from "./pages/Contact";
 import "./assets/styles/main.css";
 import Detail from "./pages/Detail";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/restauratie" element={<Restauratie />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       </main>
       <Footer />
