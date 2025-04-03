@@ -66,7 +66,7 @@ const Verkoop = () => {
         <Link to={`/detail/${item.id}`} style={{ textDecoration: "none" }}>
         <div className="card hover-card shadow-sm">
           <img
-            src={item.image}
+            src={item.image[0]}
             className="card-img"
             alt={item.name}
           />

@@ -3,6 +3,13 @@ import beeld2 from "./assets/images/beeld2.jpg";
 import buffetkast1 from "./assets/images/buffetkast1.jpg";
 import buffetkast2 from "./assets/images/buffetkast2.jpg";
 import lamp1 from "./assets/images/lamp1.jpg";
+import glazenStolp from "./assets/images/glazenStolp.jpg";
+import glazenStolp1 from "./assets/images/glazenStolp1.jpg";
+import glazenStolp2 from "./assets/images/glazenStolp2.jpg";
+import glazenStolp3 from "./assets/images/glazenStolp3.jpg";
+import degue from "./assets/images/degue.jpg";
+import degue1 from "./assets/images/degue1.jpg";
+
 
 // Define all items with a category property
 const items = [
@@ -50,7 +57,25 @@ const items = [
     price: 200.0,
     sold: true,
     category: "Verlichting",
-  }
+  },
+  {
+    id:6,
+    name: "Glazen Stolp",
+    image: [glazenStolp,glazenStolp1,glazenStolp2,glazenStolp3],
+    description: "Retro geel glazen jaren vijftig stolp met schotel. Een vrolijke geel glazen boter of kaas stolp met schotel uit de jaren vijftig in perfecte staat. Diameter schotel 21 cm. diameter stolp 16.5cm. Hoogte ongeveer 9cm.",
+    price: 50.0,
+    sold: false,
+    category: "Schalen/Servies"
+  },
+  {
+    id: 7,
+    name: "Degue Art-Déco Lamp",
+    image: [degue,degue1],
+    description: "Een puntgave helder blauwe art déco lamp met middenschotel en 3 kappen aan verchroomde armen.Frankrijk Degue 1930. De lamp is opnieuw bedraad heeft nieuwe fittingen.",
+    price: 650.0,
+    sold: false,
+    category: "Verlichting",
+  },
 ];
 
 export default items;

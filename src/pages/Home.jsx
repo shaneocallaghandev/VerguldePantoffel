@@ -30,7 +30,7 @@ const Home = () => {
 
       <div className="carousel-container">
       <div className="welcome-text-box">
-        <h2>Welkom bij De Vergulde Pantoffel</h2>
+        <h2>Welkom bij De Vergulde Pantoffel -</h2>
         <p>Antiek & Brocante</p>
         <p>Gevestigd in het hart van historisch Dordrecht.</p>
       </div>

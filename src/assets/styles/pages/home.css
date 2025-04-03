@@ -9,6 +9,7 @@
   text-align: center; /* Center text if needed */
   padding: 20px; /* Add some padding to avoid content touching the edges */
   padding-top: 85px;
+  margin-top: 20px;
 }
 
 .carousel-container {
@@ -103,7 +104,7 @@
 /* Add space below the carousel */
 .home-carousel {
   margin-top: 20px; /* Add space above the carousel */
-  margin-bottom: 100px; /* Add space below the carousel */
+  margin-bottom: 200px; /* Add space below the carousel */
 }
 
 /* Add space above the info-container */
@@ -161,12 +162,13 @@
   justify-content: space-evenly;
   flex-direction: column; /* Stack items vertically */
   align-items: center;
+  min-width: 260px;
   text-align: center;
   margin-top: 0px; /* Add some spacing above the button */
   margin-bottom: 20px;
   padding: 10px; /* Add padding for better spacing */
-  background-color: #c4b189; /* Light background color for contrast */
-  color: white; /* Ensure text is readable */
+  background-color: #f7f5ee; /* Light background color for contrast */
+  color: rgb(40, 46, 7); /* Ensure text is readable */
   font-size: 1.1rem; /* Font size */
   font-weight: bold; /* Bold text */
   border-radius: 3px; /* Rounded corners */
@@ -176,7 +178,7 @@
 }
 
 .custom-button {
-  background-color: #5e4206; /* Set the button background color */
+  background-color: #c4b189; /* Set the button background color */
   color: white; /* Set the button text color */
   padding: 10px 20px; /* Add padding inside the button */
   border-radius: 5px; /* Rounded corners for the button */
