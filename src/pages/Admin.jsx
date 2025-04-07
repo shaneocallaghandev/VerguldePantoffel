@@ -12,6 +12,26 @@ const Admin = () => {
     image: "",
   });
 
+  const categories = [
+    "Beelden",
+    "Buffetkasten",
+    "Diversen",
+    "Grafiek",
+    "Haardplaten/ijzers",
+    "Kandelaars",
+    "Kasten",
+    "Religieuze kunst/kruizen",
+    "Retro/Vintage",
+    "Schalen/Servies",
+    "Sieraden",
+    "Spiegels",
+    "Tafels",
+    "Tuin",
+    "Vazen",
+    "Verlichting",
+  ];
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewItem({ ...newItem, [name]: value });
@@ -71,8 +91,14 @@ const Admin = () => {
             name="category"
             value={newItem.category}
             onChange={handleChange}
+            list="categories" // Link to the datalist
             required
           />
+          <datalist id="categories">
+            {categories.map((category, index) => (
+              <option key={index} value={category} />
+            ))}
+          </datalist>
         </div>
         <div>
           <label>Image URL:</label>

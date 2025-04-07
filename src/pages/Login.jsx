@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/pages/Login.css";
+import PropTypes from "prop-types";
 
-const Login = () => {
+const Login = ( {setIsAuthenticated} ) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -10,8 +11,12 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "admin" && password === "password123") {
+      console.log("Login successful");
+      setIsAuthenticated(true); // Update authentication state in App
+      localStorage.setItem("isAuthenticated", "true"); 
       navigate("/admin"); // Redirect to the admin page
     } else {
+      console.log("Login failed");
       alert("Invalid username or password");
     }
   };
@@ -42,6 +47,11 @@ const Login = () => {
       </form>
     </div>
   );
+};
+
+
+Login.propTypes = {
+  setIsAuthenticated: PropTypes.func.isRequired,
 };
 
 export default Login;
