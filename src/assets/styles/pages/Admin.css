@@ -1,74 +1,153 @@
 .admin-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9; /* Light neutral background */
-    min-height: 100vh; /* Full height */
-    font-family: "Arial", sans-serif; /* Clean, modern font */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light neutral background */
+  min-height: 100vh; /* Full height */
+  font-family: "Arial", sans-serif; /* Clean, modern font */
+}
+
+.admin-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333; /* Neutral dark text */
+}
+
+/* Form Layout */
+.admin-form {
+  display: flex;
+  gap: 20px; /* Space between left and right sections */
+  width: 100%;
+  max-width: 900px; /* Limit the form width */
+  background-color: #fff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Left Section */
+.form-left {
+  flex: 1; /* Take up equal space */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form fields */
+}
+
+.form-left label {
+  font-size: 0.9rem;
+  color: #555; /* Neutral text color */
+  margin-bottom: 5px;
+}
+
+.form-left input,
+.form-left textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background for inputs */
+  box-sizing: border-box;
+}
+
+.form-left textarea {
+  resize: vertical; /* Allow vertical resizing only */
+  min-height: 100px; /* Set a minimum height for the textarea */
+}
+
+.form-left input:focus,
+.form-left textarea:focus {
+  outline: none;
+  border-color: #aaa; /* Slightly darker border on focus */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); /* Subtle glow effect */
+}
+
+/* Right Section */
+.form-right {
+  flex: 1; /* Take up equal space */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between upload and button */
+  align-items: flex-start; /* Align content to the left */
+}
+
+.form-right label {
+  font-size: 0.9rem;
+  color: #555; /* Neutral text color */
+  margin-bottom: 5px;
+}
+
+.form-right input[type="file"] {
+  font-size: 1rem;
+}
+
+.form-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Allow images to wrap */
+  gap: 10px; /* Space between images */
+}
+
+.form-right ul li {
+  margin: 0;
+}
+
+.form-right ul li img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Ensure images are cropped properly */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Add Item Button */
+.add-item-button {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: #54b936;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-item-button:hover {
+  background-color: #46484b;
+}
+
+
+.clear-last-image-button {
+  margin-top: 10px;
+  margin-left: 20px;;
+  padding: 6px;
+  background-color: #ff0000;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.clear-last-image-button:hover {
+  background-color: #e6b800;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-form {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
   }
-  
-  .admin-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333; /* Neutral dark text */
+
+  .form-left,
+  .form-right {
+    width: 100%; /* Full width for both sections */
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Add spacing between form fields */
-    width: 100%;
-    max-width: 500px; /* Limit the form width */
-    background-color: #fff; /* White background for the form */
-    padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  form label {
-    font-size: 0.9rem;
-    color: #555; /* Neutral text color */
-    margin-bottom: 5px;
-  }
-  
-  form input,
-  form textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background for inputs */
-    box-sizing: border-box;
-  }
-  
-  form textarea {
-    resize: vertical; /* Allow vertical resizing only */
-    min-height: 100px; /* Set a minimum height for the textarea */
-  }
-  
-  form input:focus,
-  form textarea:focus {
-    outline: none;
-    border-color: #aaa; /* Slightly darker border on focus */
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); /* Subtle glow effect */
-  }
-  
-  button {
-    background-color: #fff; /* White background for the button */
-    color: #333; /* Neutral text color */
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  button:hover {
-    background-color: #f0f0f0; /* Slightly darker background on hover */
-    border-color: #ccc; /* Slightly darker border on hover */
-  }
+}

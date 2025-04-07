@@ -11,6 +11,24 @@ import degue from "./assets/images/degue.jpg";
 import degue1 from "./assets/images/degue1.jpg";
 
 
+const BACKEND_URL = "https://verguldepantoffelbe.onrender.com/api/items"; // Replace with your Render backend URL
+
+const fetchItems = async () => {
+  try {
+    const response = await fetch(BACKEND_URL); // Fetch data from the backend
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json(); // Parse the JSON response
+    return data; // Return the fetched items
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    return []; // Return an empty array in case of an error
+  }
+};
+
+
+
 // Define all items with a category property
 const items = [
   {
@@ -79,3 +97,4 @@ const items = [
 ];
 
 export default items;
+export { fetchItems }; // Export the fetchItems function for use in other components
