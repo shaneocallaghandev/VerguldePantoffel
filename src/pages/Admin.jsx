@@ -11,6 +11,8 @@ const Admin = () => {
   });
 
   const [uploading, setUploading] = useState(false);
+  const [files, setFiles] = useState([]); // Store selected files before uploading
+  const [previews, setPreviews] = useState([]); // Store image preview URLs
 
   const categories = [
     "Beelden",
@@ -36,42 +38,21 @@ const Admin = () => {
     setNewItem({ ...newItem, [name]: value });
   };
 
-  const handleClearLastImage = () => {
-    setNewItem((prev) => ({
-      ...prev,
-      images: prev.images.slice(0, -1), // Remove the last image from the array
-    }));
+  const handleImageSelection = (e) => {
+    const selectedFiles = Array.from(e.target.files); // Convert FileList to an array
+  
+    // Append the new files to the existing files
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+  
+    // Generate preview URLs for the new files and append them to the existing previews
+    const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
+    setPreviews((prevPreviews) => [...prevPreviews, ...previewUrls]);
   };
 
 
-  const handleImageUpload = async (e) => {
-    const files = e.target.files;
-    const formData = new FormData();
-    Array.from(files).forEach((file) => formData.append("images", file));
-
-    try {
-      setUploading(true);
-      const response = await fetch("https://verguldepantoffelbe.onrender.com/api/items/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to upload images");
-      }
-
-      const { imageUrls } = await response.json();
-      setNewItem((prev) => ({
-        ...prev,
-        images: [...prev.images, ...imageUrls],
-      }));
-      alert("Images uploaded successfully!");
-    } catch (error) {
-      console.error("Error uploading images:", error);
-      alert("Failed to upload images.");
-    } finally {
-      setUploading(false);
-    }
+  const handleClearLastImage = () => {
+    setFiles((prevFiles) => prevFiles.slice(0, -1)); // Remove the last file
+    setPreviews((prevPreviews) => prevPreviews.slice(0, -1)); // Remove the last preview
   };
 
   const handleAddItem = async (e) => {
@@ -83,12 +64,33 @@ const Admin = () => {
     }
 
     try {
+      setUploading(true);
+
+      // Upload images first
+      const formData = new FormData();
+      Array.from(files).forEach((file) => formData.append("images", file));
+
+      const uploadResponse = await fetch("https://verguldepantoffelbe.onrender.com/api/items/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("Failed to upload images");
+      }
+      console.log("uploadResponse", uploadResponse);
+      const { imageUrls } = await uploadResponse.json();
+
+      // Add the uploaded image URLs to the item
+      const itemWithImages = { ...newItem, images: imageUrls };
+
+      // Add the item to the database
       const response = await fetch("https://verguldepantoffelbe.onrender.com/api/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newItem),
+        body: JSON.stringify(itemWithImages),
       });
 
       if (!response.ok) {
@@ -104,9 +106,13 @@ const Admin = () => {
         category: "",
         images: [],
       });
+      setFiles([]); // Clear the selected files
+      setPreviews([]); // Clear the previews
     } catch (error) {
       console.error("Error adding item:", error);
       alert("Failed to add item.");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -170,19 +176,19 @@ const Admin = () => {
             <input
               type="file"
               multiple
-              onChange={handleImageUpload}
+              onChange={handleImageSelection}
             />
             {uploading && <p>Uploading images...</p>}
-            <ul>
-              {newItem.images.map((url, index) => (
-                <li key={index}>
-                  <img src={url} alt={`Uploaded ${index}`} width="100" />
+            <ul className="image-preview-list">
+               {previews.map((preview, index) => (
+                <li key={index} className="image-preview-item">
+                  <img src={preview} alt={`Preview ${index}`} className="image-preview" />
                 </li>
               ))}
             </ul>
           </div>
           <button type="button" onClick={handleClearLastImage} className="clear-last-image-button"         >
-            X</button>
+           Delete Image </button>
           <button type="submit" className="add-item-button">Add Item</button>
         </div>
       </form>

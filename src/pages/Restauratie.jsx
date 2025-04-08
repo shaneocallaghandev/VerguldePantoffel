@@ -7,7 +7,7 @@ const Restauratie = () => {
       <div className="text-container">
         <h2>Restauratie Services</h2>
         <p>
-          Lees meer over onze restauratie diensten en bekijk enkele voorbeelden.
+          Neem contact met op voor meer informatie over restauratie diensten.
         </p>
       </div>
       <img

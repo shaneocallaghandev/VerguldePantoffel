@@ -81,6 +81,7 @@
 
 .form-right input[type="file"] {
   font-size: 1rem;
+  margin-bottom: 20px;;
 }
 
 .form-right ul {
@@ -109,7 +110,7 @@
   margin-top: 20px;
   margin-left: 20px;
   padding: 10px 20px;
-  background-color: #54b936;
+  background-color: #279112;
   color: white;
   border: none;
   border-radius: 5px;
@@ -121,13 +122,12 @@
   background-color: #46484b;
 }
 
-
 .clear-last-image-button {
   margin-top: 10px;
   margin-left: 20px;;
   padding: 6px;
-  background-color: #ff0000;
-  color: #333;
+  background-color: #919da1;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -136,7 +136,25 @@
 }
 
 .clear-last-image-button:hover {
-  background-color: #e6b800;
+  background-color: #72694a;
+}
+
+.image-preview-list {
+  list-style: none;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview-item {
+  position: relative;
+}
+
+.image-preview {
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 
