@@ -20,6 +20,7 @@ const fetchItems = async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json(); // Parse the JSON response
+    console.log("Fetched items:", data); // Log the fetched items to the console
     return data; // Return the fetched items
   } catch (error) {
     console.error("Error fetching items:", error);
@@ -27,6 +28,10 @@ const fetchItems = async () => {
   }
 };
 
+  // fetch and log items to the console when page loads 
+  window.addEventListener("DOMContentLoaded", () => {
+  fetchItems();
+  });
 
 
 // Define all items with a category property

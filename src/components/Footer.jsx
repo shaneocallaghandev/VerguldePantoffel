@@ -3,7 +3,7 @@ import "../assets/styles/footer.css";
 const Footer = () => {
   return (
     <footer>
-      <p>Contact information: info@deverguldepantoffel.nl</p>
+      <p>Contact:  hdllammertse@gmail.com | 06 505 059 56 </p>
     </footer>
   );
 };

@@ -66,9 +66,9 @@ const Admin = () => {
     try {
       setUploading(true);
 
-      // Upload images first
-      const formData = new FormData();
-      Array.from(files).forEach((file) => formData.append("images", file));
+    // Upload images first
+    const formData = new FormData();
+    files.forEach((file) => formData.append("images", file));
 
       const uploadResponse = await fetch("https://verguldepantoffelbe.onrender.com/api/items/upload", {
         method: "POST",
@@ -78,9 +78,13 @@ const Admin = () => {
       if (!uploadResponse.ok) {
         throw new Error("Failed to upload images");
       }
+
       console.log("uploadResponse", uploadResponse);
+
       const { imageUrls } = await uploadResponse.json();
 
+      console.log("Uploaded Image URLs:", imageUrls);
+      
       // Add the uploaded image URLs to the item
       const itemWithImages = { ...newItem, images: imageUrls };
 

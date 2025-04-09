@@ -164,9 +164,8 @@
   align-items: center;
   min-width: 260px;
   text-align: center;
-  margin-top: 0px; /* Add some spacing above the button */
   margin-bottom: 20px;
-  padding: 10px; /* Add padding for better spacing */
+  padding: 8px; /* Add padding for better spacing */
   background-color: #f7f5ee; /* Light background color for contrast */
   color: rgb(40, 46, 7); /* Ensure text is readable */
   font-size: 1.1rem; /* Font size */

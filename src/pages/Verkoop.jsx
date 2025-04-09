@@ -60,11 +60,16 @@ const Verkoop = () => {
     {/* Main Content */}      
     <div className="container py-5">
 
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     {filteredItems.map((item) => (
       <div key={item.id} className="col d-flex justify-content-center">
         <Link to={`/detail/${item.id}`} style={{ textDecoration: "none" }}>
         <div className="card hover-card shadow-sm">
+          {item.sold && (
+            <div className="sold-banner">
+            Sold
+            </div>
+          )}
           <img
             src={item.image[0]}
             className="card-img"
