@@ -1,0 +1,79 @@
+.test-page {
+    margin-top: 50px; /* Adjust the top margin as needed */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .admin-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .admin-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .admin-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #b02a37;
+  }
+
+  .sold-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #28a745; /* Green background */
+    color: white;
+  }
+  
+  .sold-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
