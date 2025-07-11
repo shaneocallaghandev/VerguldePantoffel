@@ -8,9 +8,12 @@ const Login = ( {setIsAuthenticated} ) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const usernameDefault = import.meta.env.VITE_USERNAME;
+  const passwordDefault = import.meta.env.VITE_PASSWORD;
+
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "password123") {
+    if (username === usernameDefault && password === passwordDefault) {
       console.log("Login successful");
       setIsAuthenticated(true); // Update authentication state in App
       localStorage.setItem("isAuthenticated", "true"); 
