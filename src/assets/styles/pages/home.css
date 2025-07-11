@@ -10,14 +10,31 @@
   padding: 20px; /* Add some padding to avoid content touching the edges */
   padding-top: 85px;
   margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wood-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/homeBackgroundWood.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
 }
 
 .carousel-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Align items vertically */
-  margin-top: 20px; /* Add some spacing above the carousel */
-  width: 80%; /* Ensure the container takes full width */
+  display: flex; /* Use Flexbox to align the text box and carousel horizontally */
+  align-items: flex-start; /* Align items to the top */
+  justify-content: flex-start; /* Align items to the left */
+  margin-top: 20px; /* Add spacing above the container */
+  width: 80%; /* Set the width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  position: relative; /* Required for ::before positioning */
 }
 
 .welcome-text-box {
@@ -25,21 +42,18 @@
   max-width: 300px; /* Limit the width of the text box */
   padding: 20px; /* Add padding inside the box */
   font-family: "Georgia", serif; /* Use a nice serif font */
-  display: flex; /* Use Flexbox for alignment */
-  flex-direction: column; /* Stack the content vertically */
-  align-items: flex-start; /* Align content to the top-left */
-  justify-content: flex-start; /* Ensure content starts at the top */
+  margin-right: 120px; /* Add spacing between the text box and the carousel */
 }
 
 .welcome-text-box h2 {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   margin-bottom: 10px;
   color: #812424; /* Optional: Add a custom color */
 }
 
 .welcome-text-box p {
-  font-size: 1.4rem;
-  color: #555; /* Subtle text color */
+  font-size: 1.7rem;
+  color: #dbdbdb; /* Subtle text color */
 }
 
 .home-carousel {
@@ -109,8 +123,8 @@
 
 /* Add space above the info-container */
 .info-container {
-  margin-top: 200px; /* Add space above the info-container */
-  margin-bottom: 200px;
+  margin-top: 180px; /* Add space above the info-container */
+  margin-bottom: 180px;
 }
 
 /* Extra Section Below the Carousel */
@@ -122,6 +136,7 @@
   background-color: #f7f5ee; /* Light background color for contrast */
   border-radius: 8px; /* Optional: Rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+  z-index: 1; /* Ensure it appears above the background */
 }
 
 .info-container h2 {
@@ -166,14 +181,15 @@
   text-align: center;
   margin-bottom: 20px;
   padding: 8px; /* Add padding for better spacing */
-  background-color: #f7f5ee; /* Light background color for contrast */
+  background-color: #faf3db; /* Light background color for contrast */
   color: rgb(40, 46, 7); /* Ensure text is readable */
   font-size: 1.1rem; /* Font size */
   font-weight: bold; /* Bold text */
   border-radius: 3px; /* Rounded corners */
-  box-shadow: #000000 0px 0px 2.5px; /* Optional: Add a shadow for depth */
+  box-shadow: #000000 0px 0px 2.0px; /* Optional: Add a shadow for depth */
   text-decoration: none; /* Remove underline from link */
   font-family: "Georgia", serif; /* Use a nice serif font */
+  z-index: 1; /* Ensure it appears above the background */
 }
 
 .custom-button {

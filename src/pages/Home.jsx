@@ -27,6 +27,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <div className="wood-background"></div>
 
       <div className="carousel-container">
       <div className="welcome-text-box">

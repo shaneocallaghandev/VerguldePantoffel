@@ -6,6 +6,8 @@ const TestPage = () => {
   const [items, setItems] = useState([]); // State to store fetched items
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
+  const [editingItem, setEditingItem] = useState(null); // State to track the item being edited
+  const [formData, setFormData] = useState({}); // State to store form data
 
   useEffect(() => {
     const getItems = async () => {
@@ -21,6 +23,55 @@ const TestPage = () => {
 
     getItems();
   }, []);
+
+
+  const handleEdit = (item) => {
+    setEditingItem(item); // Set the item being edited
+    setFormData(item); // Pre-fill the form with the item's details
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `https://verguldepantoffelbe.onrender.com/api/items/${editingItem._id}`,
+        {
+          method: "PATCH", // Use PATCH or PUT depending on your backend
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData), // Send the updated data
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update item");
+      }
+
+      const updatedItem = await response.json();
+
+      // Update the item's details in the state
+      setItems((prevItems) =>
+        prevItems.map((item) =>
+          item._id === updatedItem._id ? updatedItem : item
+        )
+      );
+
+      alert("Item updated successfully!");
+      setEditingItem(null); // Close the edit modal
+    } catch (err) {
+      console.error("Error updating item:", err);
+      alert("Failed to update item.");
+    }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -89,9 +140,9 @@ const TestPage = () => {
         <thead>
           <tr>
             <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
+            <th>Titel</th>
+            <th>Beschrijving</th>
+            <th>Prijs</th>
             <th>Category</th>
             <th>Sold</th>
             <th>Actions</th>
@@ -119,7 +170,7 @@ const TestPage = () => {
               <td>
                 <button
                   className="edit-button"
-                  onClick={() => alert(`Edit item: ${item.name}`)}
+                  onClick={() => handleEdit(item)}
                 >
                   Edit
                 </button>
@@ -142,6 +193,56 @@ const TestPage = () => {
           ))}
         </tbody>
       </table>
+
+
+      {/* Edit Modal */}
+      {editingItem && (
+        <div className="edit-modal">
+          <form onSubmit={handleFormSubmit}>
+            <h2>Edit Item</h2>
+            <label>
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={formData.name || ""}
+                onChange={handleFormChange}
+              />
+            </label>
+            <label>
+              Description:
+              <textarea
+                name="description"
+                value={formData.description || ""}
+                onChange={handleFormChange}
+              />
+            </label>
+            <label>
+              Price:
+              <input
+                type="number"
+                name="price"
+                value={formData.price || ""}
+                onChange={handleFormChange}
+              />
+            </label>
+            <label>
+              Category:
+              <input
+                type="text"
+                name="category"
+                value={formData.category || ""}
+                onChange={handleFormChange}
+              />
+            </label>
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => setEditingItem(null)}>
+              Cancel
+            </button>
+          </form>
+        </div>
+      )}
+
     </div>
   );
 };

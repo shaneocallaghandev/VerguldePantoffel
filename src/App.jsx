@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/login" element={<Login setIsAuthenticated={handleSetAuthenticated} />} />
         <Route path="/admin" element={ isAuthenticated ? <Admin /> : <Navigate to="/login" replace />} />
-        <Route path="/test" element={<TestPage />} />
+        <Route path="/test" element={ isAuthenticated ? <TestPage /> : <Navigate to="/login" replace />} />
       </Routes>
       </main>
       <Footer />
