@@ -2,25 +2,24 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/pages/Login.css";
 import PropTypes from "prop-types";
+import { login } from "../login.js"; // Import the login function
 
 const Login = ( {setIsAuthenticated} ) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const usernameDefault = import.meta.env.VITE_USERNAME;
-  const passwordDefault = import.meta.env.VITE_PASSWORD;
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === usernameDefault && password === passwordDefault) {
-      console.log("Login successful");
+
+    try {
+      const data = await login(username, password); // Call the login API
+      console.log(data.message); // Log the success message
       setIsAuthenticated(true); // Update authentication state in App
-      localStorage.setItem("isAuthenticated", "true"); 
+      localStorage.setItem("isAuthenticated", "true"); // Persist authentication state
       navigate("/admin"); // Redirect to the admin page
-    } else {
-      console.log("Login failed");
-      alert("Invalid username or password");
+    } catch (error) {
+      alert(error.message || "An error occurred. Please try again."); // Show an error message
     }
   };
 
