@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../assets/styles/pages/Home.css";
+import "../assets/styles/pages/home.css";
 import image2 from "../assets/images/2.jpg";
 import image4 from "../assets/images/4.jpg";
 import image1 from "../assets/images/1.jpg";

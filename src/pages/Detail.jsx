@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import items from "../data";
-import "../assets/styles/pages/Detail.css";
+import "../assets/styles/pages/detail.css";
 import { useState } from "react";
 
 const Detail = () => {

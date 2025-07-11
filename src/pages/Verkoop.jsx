@@ -1,4 +1,4 @@
-import "../assets/styles/pages/Verkoop.css";
+import "../assets/styles/pages/verkoop.css";
 import items from "../data";
 import { useState } from "react";
 import { Link } from "react-router-dom";

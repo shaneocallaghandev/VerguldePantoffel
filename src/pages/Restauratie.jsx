@@ -1,4 +1,4 @@
-import "../assets/styles/pages/Restauratie.css";
+import "../assets/styles/pages/restauratie.css";
 import restauratieImage from "../assets/images/image-4184760_0.jpg";
 
 const Restauratie = () => {
