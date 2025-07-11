@@ -171,6 +171,9 @@ const Admin = () => {
               ))}
             </datalist>
           </div>
+          <div className ="go-to-item-overview">
+            <a href="/test" className="custom-button">Item Overview</a>
+          </div>
         </div>
 
         {/* Right Section */}
