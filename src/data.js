@@ -34,6 +34,21 @@ const fetchItems = async () => {
   });
 
 
+  const fetchItemsByID = async (id) => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/${id}`); // Fetch item by ID
+      if (!response.ok) { 
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json(); // Parse the JSON response
+      console.log("Fetched item by ID:", data); // Log the fetched item to the console    
+      return data; // Return the fetched item
+    } catch (error) {
+      console.error("Error fetching item by ID:", error);
+      return null; // Return null in case of an error
+    } 
+  };
+
 // Define all items with a category property
 const items = [
   {
@@ -102,4 +117,4 @@ const items = [
 ];
 
 export default items;
-export { fetchItems }; // Export the fetchItems function for use in other components
+export { fetchItems, fetchItemsByID }; // Export the fetchItems function for use in other components

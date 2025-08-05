@@ -1,15 +1,43 @@
 import { useParams } from "react-router-dom";
-import items from "../data";
 import "../assets/styles/pages/detail.css";
 import { useState } from "react";
+import { useEffect } from "react";
+import { fetchItemsByID } from "../data.js"; // Import the API function to fetch items
 
 const Detail = () => {
   const { id } = useParams(); // Get the item ID from the route parameter
-  const item = items.find((item) => item.id === parseInt(id)); // Find the item by ID
+  const [item, setItem] = useState(null); // State to store the fetched item
+  const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
+  const [loading, setLoading] = useState(true); // State for loading
+  const [error, setError] = useState(null); // State for error handling
 
-  // Use the first image in the array as the default main image
-  const [selectedImage, setSelectedImage] = useState(item?.image[0]);
-  	
+  // Fetch the item details when the component mounts
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const data = await fetchItemsByID(id); // Use the fetchItemsByID function
+        setItem(data); // Set the fetched item in state
+        setSelectedImage(data.images[0]); // Set the first image as the default selected image
+      } catch (err) {
+        setError(err.message); // Set the error message
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+
+    fetchItem();
+  }, [id]);
+
+
+  // Render loading, error, or the main content
+  if (loading) {
+    return <p>Loading item details...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   if (!item) {
     return <p>Item not found.</p>;
   }
@@ -28,7 +56,7 @@ const Detail = () => {
 
            {/* Thumbnails */}
               <div className="thumbnail-container">
-              {item.image.map((image, index) => (
+              {item.images.map((image, index) => (
               <img
                 key={index}
                 src={image}

@@ -47,15 +47,15 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
-  
+
   .detail-image {
-    width: 100%;
-    max-width: 900px;
-    height: auto;
     border-radius: 8px;
+    max-height: 400px; /* Limit the height of the image container */
+    max-width: 900px;
     margin-bottom: 20px;
     padding: 20px;
     padding-bottom: 0px;
+    object-fit: contain !important;
   }
   
   .thumbnail-container {
