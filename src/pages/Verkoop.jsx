@@ -106,6 +106,7 @@ const Verkoop = () => {
                     src={item.images[0]} // Access the first image from the images array
                     className="card-img"
                     alt={item.name}
+                    loading="lazy"
                   />
                   <div className="card-overlay">
                     <p className="card-description">
