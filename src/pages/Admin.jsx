@@ -8,6 +8,7 @@ const Admin = () => {
     price: "",
     category: "",
     images: [],
+    favorite: false,
   });
 
   const [uploading, setUploading] = useState(false);
@@ -109,6 +110,7 @@ const Admin = () => {
         price: "",
         category: "",
         images: [],
+        favorite: false,
       });
       setFiles([]); // Clear the selected files
       setPreviews([]); // Clear the previews
@@ -127,7 +129,7 @@ const Admin = () => {
         {/* Left Section */}
         <div className="form-left">
           <div>
-            <label>Name:</label>
+            <label>Titel:</label>
             <input
               type="text"
               name="name"
@@ -137,7 +139,7 @@ const Admin = () => {
             />
           </div>
           <div>
-            <label>Description:</label>
+            <label>Beschrijving:</label>
             <textarea
               name="description"
               value={newItem.description}
@@ -146,7 +148,7 @@ const Admin = () => {
             />
           </div>
           <div>
-            <label>Price:</label>
+            <label>Prijs:</label>
             <input
               type="number"
               name="price"
@@ -156,7 +158,7 @@ const Admin = () => {
             />
           </div>
           <div>
-            <label>Category:</label>
+            <label>Categorie:</label>
             <input
               type="text"
               name="category"
@@ -170,6 +172,17 @@ const Admin = () => {
                 <option key={index} value={category} />
               ))}
             </datalist>
+          </div>
+          <div>
+            <label>Markeer als Favoriet:</label>
+            <input
+              type="checkbox"
+              name="favorite"
+              checked={newItem.favorite || false}
+              onChange={(e) =>
+                setNewItem({ ...newItem, favorite: e.target.checked })
+              }
+            />
           </div>
           <div className ="go-to-item-overview">
             <a href="/test" className="custom-button">Item Overview</a>

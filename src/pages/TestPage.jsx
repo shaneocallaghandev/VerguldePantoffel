@@ -124,6 +124,36 @@ const TestPage = () => {
       alert("Failed to mark item as sold.");
     }
   };
+  const handleToggleFavorite = async (id) => {
+  try {
+    const item = items.find((item) => item._id === id);
+    const updatedFavoriteStatus = !item.favorite;
+
+    const response = await fetch(
+      `https://verguldepantoffelbe.onrender.com/api/items/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ favorite: updatedFavoriteStatus }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update favorite status");
+    }
+
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === id ? { ...item, favorite: updatedFavoriteStatus } : item
+      )
+    );
+  } catch (err) {
+    console.error("Error updating favorite status:", err);
+    alert("Failed to update favorite status.");
+  }
+};
 
   if (loading) {
     return <p>Loading...</p>; // Show a loading message while fetching data
@@ -132,6 +162,11 @@ const TestPage = () => {
   if (error) {
     return <p>Error: {error}</p>; // Show an error message if fetching fails
   }
+
+  const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-GB"); // Formats as DD/MM/YYYY
+};
 
   return (
     <div className="test-page">
@@ -143,9 +178,11 @@ const TestPage = () => {
             <th>Titel</th>
             <th>Beschrijving</th>
             <th>Prijs</th>
-            <th>Category</th>
-            <th>Sold</th>
-            <th>Actions</th>
+            <th>Categorie</th>
+            <th>Datum</th>
+            <th>Acties</th>
+            <th>Favoriet</th>
+            <th>Verkocht</th>
           </tr>
         </thead>
         <tbody>
@@ -166,7 +203,7 @@ const TestPage = () => {
               <td>{item.description}</td>
               <td>€{item.price}</td>
               <td>{item.category}</td>
-              <td>{item.sold ? "Yes" : "No"}</td>
+              <td>{item.dateAdded ? formatDate(item.dateAdded) : "N/A"}</td>
               <td>
                 <button
                   className="edit-button"
@@ -180,20 +217,25 @@ const TestPage = () => {
                 >
                   Delete
                 </button>
-                {!item.sold && (
-                  <button
-                    className="sold-button"
-                    onClick={() => handleSetAsSold(item._id)}
-                  >
-                    Verkocht
-                  </button>
-                )}               
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={item.favorite || false}
+                  onChange={() => handleToggleFavorite(item._id)}
+                />
+              </td>
+              <td>
+                <input
+                  type="checkbox" 
+                  checked={item.sold || false}
+                  onChange={() => handleSetAsSold(item._id)}          
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
 
       {/* Edit Modal */}
       {editingItem && (
