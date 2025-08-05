@@ -95,35 +95,39 @@ const TestPage = () => {
     }
   };
 
-  const handleSetAsSold = async (id) => {
-    try {
-      const response = await fetch(
-        `https://verguldepantoffelbe.onrender.com/api/items/${id}`,
-        {
-          method: "PATCH", // Use PATCH or PUT depending on your backend
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ sold: true }), // Update the sold status
-        }
-      );
+ const handleSetAsSold = async (id) => {
+  try {
+    const item = items.find((item) => item._id === id);
+    const updatedSoldStatus = !item.sold; // Toggle the sold status
 
-      if (!response.ok) {
-        throw new Error("Failed to update item");
+    const response = await fetch(
+      `https://verguldepantoffelbe.onrender.com/api/items/${id}`,
+      {
+        method: "PATCH", // Use PATCH or PUT depending on your backend
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ sold: updatedSoldStatus }), // Update the sold status
       }
+    );
 
-      // Update the item's sold status in the state
-      setItems((prevItems) =>
-        prevItems.map((item) =>
-          item._id === id ? { ...item, sold: true } : item
-        )
-      );
-      alert("Item marked as sold!");
-    } catch (err) {
-      console.error("Error updating item:", err);
-      alert("Failed to mark item as sold.");
+    if (!response.ok) {
+      throw new Error("Failed to update item");
     }
-  };
+
+    // Update the item's sold status in the state
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id === id ? { ...item, sold: updatedSoldStatus } : item
+      )
+    );
+    alert(`Item marked as ${updatedSoldStatus ? "sold" : "unsold"}!`);
+  } catch (err) {
+    console.error("Error updating item:", err);
+    alert("Failed to update sold status.");
+  }
+};
+
   const handleToggleFavorite = async (id) => {
   try {
     const item = items.find((item) => item._id === id);
