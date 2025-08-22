@@ -13,6 +13,8 @@ const Restauratie = () => {
       <img
         src={restauratieImage}
         alt="Restauratie voorbeeld"
+        loading="lazy"
+        className="restauratie-image"
       />
     </div>
   );

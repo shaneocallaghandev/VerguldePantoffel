@@ -2,6 +2,8 @@ import "../assets/styles/pages/verkoop.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchItems } from "../data.js"; // Import the API function to fetch items
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Verkoop = () => {
   // State to track the fetched items, loading status, and errors
@@ -24,14 +26,9 @@ const Verkoop = () => {
         setLoading(false); // Stop loading
       }
     };
-
+    console.log("Fetching items for Verkoop page...");
     getItems();
   }, []);
-
-  // Log items after they are updated
-  useEffect(() => {
-    console.log(items); // Log the fetched items
-  }, [items]);
 
   // Get unique categories from the fetched items
   const categories = ["All", ...new Set(items.map((item) => item.category))];
@@ -49,11 +46,6 @@ const Verkoop = () => {
     }
     return text;
   };
-
-  // Render loading, error, or the main content
-  if (loading) {
-    return <div>Loading items...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -96,6 +88,18 @@ const Verkoop = () => {
 
       {/* Main Content */}
       <div className="container py-5">
+          {loading? (
+              <div className="row">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <div key={index} className="col d-flex justify-content-center">
+                    <div className="card hover-card shadow-sm">
+                      <Skeleton height={200} />
+                      <Skeleton count={3} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+          ): ( 
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
           {filteredItems.map((item) => (
             <div key={item._id} className="col d-flex justify-content-center">
@@ -128,6 +132,7 @@ const Verkoop = () => {
             </div>
           ))}
         </div>
+          )}
       </div>
     </div>
   );

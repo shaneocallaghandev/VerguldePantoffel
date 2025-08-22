@@ -1,0 +1,19 @@
+.contact-container {
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: row; /* Place items in a column */
+  justify-content: space-between; /* Add space between the info and map */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Add spacing between the columns */
+  padding: 20px; /* Add padding around the container */
+}
+
+.contact-info {
+  flex: 1; /* Take up equal space */
+  max-width: 50%; /* Limit the width of the contact info */
+}
+
+.contact-map {
+  flex: 1; /* Take up equal space */
+  max-width: 50%; /* Limit the width of the map */
+  height: 400px; /* Ensure the map has a fixed height */
+}

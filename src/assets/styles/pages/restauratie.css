@@ -1,6 +1,6 @@
 .main-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -15,6 +15,8 @@
     flex-direction: column; /* Plaats tekstitems onder elkaar */
     justify-content: center; /* Centreer de tekst verticaal */
     text-align: left; /* Zorg ervoor dat de tekst links wordt uitgelijnd */
+    margin: 20px; /* Voeg wat ruimte toe rond de tekstcontainer */
+    
   }
   
   .main-container img {
