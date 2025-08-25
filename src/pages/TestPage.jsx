@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { fetchItems } from "../data"; // Import the fetchItems function
 import "../assets/styles/pages/TestPage.css"; // Import your CSS file for styling
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { SortableItem } from "../components/SortableItem"; // Custom component for sortable items
 
 const TestPage = () => {
   const [items, setItems] = useState([]); // State to store fetched items
@@ -8,6 +15,7 @@ const TestPage = () => {
   const [error, setError] = useState(null); // State to track errors
   const [editingItem, setEditingItem] = useState(null); // State to track the item being edited
   const [formData, setFormData] = useState({}); // State to store form data
+  const [imageOrder, setImageOrder] = useState([]); // State to track the order of images
 
   useEffect(() => {
     const getItems = async () => {
@@ -28,6 +36,7 @@ const TestPage = () => {
   const handleEdit = (item) => {
     setEditingItem(item); // Set the item being edited
     setFormData(item); // Pre-fill the form with the item's details
+    setImageOrder(item.images || []); // Initialize the image order with the item's images
   };
 
   const handleFormChange = (e) => {
@@ -38,9 +47,23 @@ const TestPage = () => {
     }));
   };
 
+const handleDragEnd = (event) => {
+  const { active, over } = event;
+
+  if (active.id !== over.id) {
+    const oldIndex = imageOrder.findIndex((image) => image === active.id);
+    const newIndex = imageOrder.findIndex((image) => image === over.id);
+
+    setImageOrder((prevOrder) => arrayMove(prevOrder, oldIndex, newIndex));
+  }
+};
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+       // Include the reordered images in the form data
+      const updatedData = { ...formData, images: imageOrder };
+
       const response = await fetch(
         `https://verguldepantoffelbe.onrender.com/api/items/${editingItem._id}`,
         {
@@ -48,7 +71,7 @@ const TestPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData), // Send the updated data
+          body: JSON.stringify(updatedData), // Send the updated data
         }
       );
 
@@ -286,6 +309,18 @@ const TestPage = () => {
                 onChange={handleFormChange}
               />
             </label>
+
+            {/* Drag-and-Drop for Images */}
+            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+              <SortableContext items={imageOrder} strategy={verticalListSortingStrategy}>
+                <ul className="image-list">
+                  {imageOrder.map((image) => (
+                    <SortableItem key={image} id={image} image={image} />
+                  ))}
+                </ul>
+              </SortableContext>
+            </DndContext>
+
             <button type="submit">Save</button>
             <button type="button" onClick={() => setEditingItem(null)}>
               Cancel
