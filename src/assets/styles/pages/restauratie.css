@@ -16,10 +16,9 @@
     justify-content: center; /* Centreer de tekst verticaal */
     text-align: left; /* Zorg ervoor dat de tekst links wordt uitgelijnd */
     margin: 20px; /* Voeg wat ruimte toe rond de tekstcontainer */
-    
   }
   
   .main-container img {
-    max-width: 50%; /* Zorg ervoor dat de afbeelding niet te groot is */
+    max-width: 70%; /* Zorg ervoor dat de afbeelding niet te groot is */
     height: auto; /* Behoud de aspectratio van de afbeelding */
   }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchItems } from "../data"; // Import the fetchItems function
-import "../assets/styles/pages/TestPage.css"; // Import your CSS file for styling
+import "../assets/styles/pages/BeheerPage.css"; // Import your CSS file for styling
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   arrayMove,

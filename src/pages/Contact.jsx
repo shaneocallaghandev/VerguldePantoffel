@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "../assets/styles/pages/contact.css"; // Import your CSS file for styling
 
 const Contact = () => {
   useEffect(() => {
@@ -28,8 +29,7 @@ const Contact = () => {
     <div className="contact-container">
       {/* Contact Info */}
       <div className="contact-info">
-        <h2>Contact</h2>
-        <p>Restauratie Atelier De Vergulde Pantoffel</p>
+        <h2>Restauratie Atelier De Vergulde Pantoffel</h2>
         <p>Hugo Lammertse </p>
         <p>Voorstraat 300 3311CW Dordrecht</p>
         <p>06 50505956 / 06 8436542</p>
@@ -37,18 +37,16 @@ const Contact = () => {
           Bezichtiging en vrijblijvende offerte op afspraak. Voor vragen en
           opmerkingen kunt u ons bereiken via:
         </p>
-        <p>hdllammertse@gmail.com</p>
+        <p><strong>hdllammertse@gmail.com</strong></p>
+        <a href="https://maps.app.goo.gl/mWTTfRakxVViphqk9" target="_blank" rel="noopener noreferrer">
+          Bekijk op Google Maps
+        </a>
       </div>
 
       {/* Map */}
       <div
         id="map"
         className="contact-map"
-        style={{
-          height: "400px",
-          width: "100%",
-          border: "1px solid #ccc",
-        }}
       ></div>
     </div>
   );

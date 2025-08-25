@@ -8,12 +8,12 @@
 }
 
 .contact-info {
-  flex: 1; /* Take up equal space */
+  margin-right: 20px;
   max-width: 50%; /* Limit the width of the contact info */
 }
 
 .contact-map {
-  flex: 1; /* Take up equal space */
-  max-width: 50%; /* Limit the width of the map */
-  height: 400px; /* Ensure the map has a fixed height */
+  height: 450px;
+  width: 100%; /* Keep the width at 100% */
+  border: 1px solid #ccc; /* Optional: Add a border */
 }
