@@ -28,6 +28,19 @@ const Detail = () => {
     fetchItem();
   }, [id]);
 
+  // Navigate to the previous image
+  const handlePreviousImage = () => {
+    const currentIndex = item.images.indexOf(selectedImage);
+    const previousIndex = (currentIndex - 1 + item.images.length) % item.images.length;
+    setSelectedImage(item.images[previousIndex]);
+  };
+
+  // Navigate to the next image
+  const handleNextImage = () => {
+    const currentIndex = item.images.indexOf(selectedImage);
+    const nextIndex = (currentIndex + 1) % item.images.length;
+    setSelectedImage(item.images[nextIndex]);
+  };
 
   // Render loading, error, or the main content
   if (loading) {
@@ -51,9 +64,14 @@ const Detail = () => {
 
         <div className="detail-card">
           <div className="image-container">
+            <button className="arrow-button left-arrow" onClick={handlePreviousImage}>
+              &#8592;
+            </button>
            {/* Main Image */}
            <img src={selectedImage} alt={item.name} className="detail-image" />
-
+            <button className="arrow-button right-arrow" onClick={handleNextImage}>
+              &#8594;
+            </button>
            {/* Thumbnails */}
               <div className="thumbnail-container">
               {item.images.map((image, index) => (

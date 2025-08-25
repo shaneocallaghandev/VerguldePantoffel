@@ -112,3 +112,9 @@
   .back-button:hover {
     background-color: #D4A373; /* Change color on hover for a warm effect */
   }
+
+.arrow-button{
+  font-size: 1.1rem;
+  padding: 1px 8px;
+  margin: 5px;
+}

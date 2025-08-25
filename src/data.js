@@ -38,16 +38,13 @@ const fetchItems = async () => {
       if (!response.ok) { 
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json(); // Parse the JSON response
-      console.log("Fetched item by ID:", data); // Log the fetched item to the console    
+      const data = await response.json(); // Parse the JSON response  
       return data; // Return the fetched item
     } catch (error) {
       console.error("Error fetching item by ID:", error);
       return null; // Return null in case of an error
     } 
   };
-
-
 
 // Test items with local images and categories
 const items = [
