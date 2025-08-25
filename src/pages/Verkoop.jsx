@@ -12,24 +12,36 @@ const Verkoop = () => {
   const [error, setError] = useState(null);
 
   // State to track the selected category
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(
+    localStorage.getItem("selectedCategory") || "All"
+  );
 
   // Fetch items from the API when the component mounts
   useEffect(() => {
     const getItems = async () => {
       try {
-        const fetchedItems = await fetchItems(); // Fetch items from the API
-        setItems(fetchedItems); // Set the fetched items in state
+        const cachedItems = localStorage.getItem("items");
+        if (cachedItems) {
+          setItems(JSON.parse(cachedItems)); // Use cached items
+        } else {
+          const fetchedItems = await fetchItems(); // Fetch from the database
+          setItems(fetchedItems);
+        }
       } catch (err) {
-        setError(err.message); // Set the error message
+        setError(err.message);
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
-    console.log("Fetching items for Verkoop page...");
+
     getItems();
   }, []);
 
+    // Save the selected category to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("selectedCategory", selectedCategory);
+  }, [selectedCategory]);
+  
   // Get unique categories from the fetched items
   const categories = ["All", ...new Set(items.map((item) => item.category))];
 

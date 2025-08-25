@@ -247,13 +247,18 @@ const TestPage = () => {
           <form onSubmit={handleFormSubmit}>
             <h2>Edit Item</h2>
             <label>
-              Name:
+              Titel:
               <input
                 type="text"
                 name="name"
                 value={formData.name || ""}
                 onChange={handleFormChange}
+                maxLength={45}
               />
+                {/* Show remaining characters only if the user has started typing */}
+                {formData.name.length > 0 && (
+                  <p>{45 - formData.name.length} tekens resterend</p>
+                )}
             </label>
             <label>
               Description:

@@ -36,7 +36,12 @@ const Admin = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewItem({ ...newItem, [name]: value });
+
+    // Capitalize the first letter of the category
+    const formattedValue =
+    name === "category" ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+
+    setNewItem({ ...newItem, [name]: formattedValue });
   };
 
   const handleImageSelection = (e) => {
@@ -135,8 +140,13 @@ const Admin = () => {
               name="name"
               value={newItem.name}
               onChange={handleChange}
+              maxLength="45"
               required
             />
+          {/* Show remaining characters only if the user has started typing */}
+          {newItem.name.length > 0 && (
+            <p>{45 - newItem.name.length} tekens resterend</p>
+          )}
           </div>
           <div>
             <label>Beschrijving:</label>

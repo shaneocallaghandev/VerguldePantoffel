@@ -7,12 +7,24 @@ import image2 from "../assets/images/2.jpg";
 import image4 from "../assets/images/4.jpg";
 import image1 from "../assets/images/1.jpg";
 import welkomFoto from "../assets/images/welkomfoto_0.jpg";
+import { fetchItems } from "../data";
 
 
 const Home = () => {
 
   useEffect(() => {
     window.dispatchEvent(new Event("resize")); // Trigger a resize event to fix slick width issues
+        // Prefetch items for the Verkoop page
+    const prefetchItems = async () => {
+      try {
+        const items = await fetchItems(); // Fetch items from the database
+        localStorage.setItem("items", JSON.stringify(items)); // Cache items in localStorage
+      } catch (error) {
+        console.error("Error prefetching items:", error);
+      }
+    };
+
+    prefetchItems();
   }, []);
 
   const settings = {
@@ -41,10 +53,10 @@ const Home = () => {
         <img src={image1} alt="Impressie 1" loading="lazy" />
         </div>
         <div>
-        <img src={image2} alt="Impressie 2" />
+        <img src={image2} alt="Impressie 2" loading="lazy" />
         </div>
         <div>
-        <img src={image4} alt="Impressie 4" />
+        <img src={image4} alt="Impressie 4" loading="lazy" />
         </div>
       </Carousel>
     </div>
@@ -62,13 +74,13 @@ const Home = () => {
         </p>
         </div>
         <div className="info-image-container">
-        <img src={welkomFoto} alt="Welkom Foto" className="info-image" />
+        <img src={welkomFoto} alt="Welkom Foto" className="info-image" loading="lazy" />
         </div>
     </div>
 
     <div className ="home-to-verkoop-router">
       <p>Bekijk de collectie</p>
-      <a href="/verkoop" className="custom-button">Naar Verkoop</a>
+      <a href="/verkoop" className="custom-button"> Verkoop</a>
     </div>
 
     </div>
