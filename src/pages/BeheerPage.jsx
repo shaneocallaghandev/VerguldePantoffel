@@ -9,7 +9,7 @@ import {
 } from "@dnd-kit/sortable";
 import { SortableItem } from "../components/SortableItem"; // Custom component for sortable items
 
-const TestPage = () => {
+const BeheerPage = () => {
   const [items, setItems] = useState([]); // State to store fetched items
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
@@ -333,4 +333,4 @@ const handleDragEnd = (event) => {
   );
 };
 
-export default TestPage;
+export default BeheerPage;

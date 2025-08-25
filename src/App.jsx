@@ -10,7 +10,7 @@ import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import { useState } from "react";
-import TestPage from "./pages/TestPage"; // Import the TestPage component
+import BeheerPage from "./pages/BeheerPage"; // Import the TestPage component
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/login" element={<Login setIsAuthenticated={handleSetAuthenticated} />} />
         <Route path="/admin" element={ isAuthenticated ? <Admin /> : <Navigate to="/login" replace />} />
-        <Route path="/test" element={ isAuthenticated ? <TestPage /> : <Navigate to="/login" replace />} />
+        <Route path="/beheer" element={ isAuthenticated ? <BeheerPage /> : <Navigate to="/login" replace />} />
       </Routes>
       </main>
       <Footer />

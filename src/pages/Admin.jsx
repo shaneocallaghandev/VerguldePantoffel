@@ -195,7 +195,7 @@ const Admin = () => {
             />
           </div>
           <div className ="go-to-item-overview">
-            <a href="/test" className="custom-button">Item Overview</a>
+            <a href="/beheer" className="custom-button">Item Overview</a>
           </div>
         </div>
 
