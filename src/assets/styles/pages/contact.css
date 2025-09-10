@@ -3,12 +3,14 @@
   flex-direction: row; /* Place items in a column */
   justify-content: space-between; /* Add space between the info and map */
   align-items: flex-start; /* Align items at the top */
-  gap: 20px; /* Add spacing between the columns */
-  padding: 20px; /* Add padding around the container */
+  gap: 20px; 
+  padding: 20px; 
+  z-index: 1;           
 }
 
 .contact-info {
   margin-right: 20px;
+  z-index: 1;       
   max-width: 50%; /* Limit the width of the contact info */
 }
 
@@ -16,4 +18,20 @@
   height: 450px;
   width: 100%; /* Keep the width at 100% */
   border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 8px; /* Optional: Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+  z-index: 1;
+}
+
+.contact-wood-background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-image: url('/images/homeBackgroundWood.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }

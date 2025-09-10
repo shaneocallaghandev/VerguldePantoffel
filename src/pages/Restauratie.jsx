@@ -4,6 +4,7 @@ import restauratieImage from "../assets/images/image-4184760_0.jpg";
 const Restauratie = () => {
   return (
     <div className="main-container">
+      <div className="restauratie-wood-background"></div>
       <div className="text-container">
         <h2>Restauratie Services</h2>
         <p>

@@ -8,6 +8,8 @@
   min-height: 100vh; /* Minimum height to ensure content is centered */
   text-align: center; /* Center text if needed */
   padding: 20px; /* Add some padding to avoid content touching the edges */
+  position: relative;
+  z-index: 1;
   }
   
   .text-container {
@@ -22,3 +24,16 @@
     max-width: 70%; /* Zorg ervoor dat de afbeelding niet te groot is */
     height: auto; /* Behoud de aspectratio van de afbeelding */
   }
+
+  .restauratie-wood-background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: url('/images/homeBackgroundWood.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}

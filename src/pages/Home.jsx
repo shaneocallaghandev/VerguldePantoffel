@@ -13,6 +13,12 @@ import { fetchItems } from "../data";
 const Home = () => {
 
   useEffect(() => {
+      const images = [image1, image2, image4, welkomFoto];
+      images.forEach(src => {
+        const img = new window.Image();
+        img.src = src;
+      });
+
     window.dispatchEvent(new Event("resize")); // Trigger a resize event to fix slick width issues
         // Prefetch items for the Verkoop page
     const prefetchItems = async () => {
@@ -79,7 +85,7 @@ const Home = () => {
     </div>
 
     <div className ="home-to-verkoop-router">
-      <p>Bekijk de collectie</p>
+      <p>Bekijk de collectie:</p>
       <a href="/verkoop" className="custom-button"> Verkoop</a>
     </div>
 

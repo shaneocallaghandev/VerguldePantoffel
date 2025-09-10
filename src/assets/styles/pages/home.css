@@ -193,9 +193,9 @@
 }
 
 .custom-button {
-  background-color: #c4b189; /* Set the button background color */
+  background-color: #c1a261; /* Set the button background color */
   color: white; /* Set the button text color */
-  padding: 10px 10px; /* Add padding inside the button */
+  padding: 8px 8px; /* Add padding inside the button */
   border-radius: 5px; /* Rounded corners for the button */
   text-decoration: none; /* Remove underline from the button text */
   font-size: 1rem; /* Adjust font size */

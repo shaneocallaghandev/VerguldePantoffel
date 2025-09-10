@@ -198,6 +198,11 @@ const handleDragEnd = (event) => {
   return (
     <div className="test-page">
       <h1>Items Bewerken</h1>
+
+      <div className ="go-to-admin">
+        <a href="/admin" className="custom-button">Naar Admin</a>
+      </div>
+
       <table className="admin-table">
         <thead>
           <tr>

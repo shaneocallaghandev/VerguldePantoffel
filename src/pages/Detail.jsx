@@ -11,22 +11,37 @@ const Detail = () => {
   const [loading, setLoading] = useState(true); // State for loading
   const [error, setError] = useState(null); // State for error handling
 
-  // Fetch the item details when the component mounts
-  useEffect(() => {
-    const fetchItem = async () => {
-      try {
-        const data = await fetchItemsByID(id); // Use the fetchItemsByID function
-        setItem(data); // Set the fetched item in state
-        setSelectedImage(data.images[0]); // Set the first image as the default selected image
-      } catch (err) {
-        setError(err.message); // Set the error message
-      } finally {
-        setLoading(false); // Stop loading
-      }
-    };
+useEffect(() => {
+  const fetchItem = async () => {
+    setLoading(true);
+    setError(null);
 
-    fetchItem();
-  }, [id]);
+    // Try to get from cache first
+    const cached = localStorage.getItem(`item-${id}`);
+    if (cached) {
+      const data = JSON.parse(cached);
+      setItem(data);
+      setSelectedImage(data.images[0]);
+      setLoading(false);
+      return;
+    }
+
+    // If not cached, fetch from API
+    try {
+      const data = await fetchItemsByID(id);
+      setItem(data);
+      setSelectedImage(data.images[0]);
+      // Save to cache
+      localStorage.setItem(`item-${id}`, JSON.stringify(data));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchItem();
+}, [id]);
 
   // Navigate to the previous image
   const handlePreviousImage = () => {

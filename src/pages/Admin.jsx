@@ -129,7 +129,12 @@ const Admin = () => {
 
   return (
     <div className="admin-container">
-      <h2>Admin Panel</h2>
+      <h2>Admin Panel</h2> 
+ 
+      <div className ="go-to-beheer">
+        <a href="/beheer" className="custom-button">Naar Beheer</a>
+      </div>
+
       <form onSubmit={handleAddItem} className="admin-form">
         {/* Left Section */}
         <div className="form-left">
@@ -193,9 +198,6 @@ const Admin = () => {
                 setNewItem({ ...newItem, favorite: e.target.checked })
               }
             />
-          </div>
-          <div className ="go-to-item-overview">
-            <a href="/beheer" className="custom-button">Item Overview</a>
           </div>
         </div>
 

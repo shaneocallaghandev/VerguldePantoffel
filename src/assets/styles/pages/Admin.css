@@ -15,6 +15,10 @@
   color: #333; /* Neutral dark text */
 }
 
+.go-to-beheer {
+  margin-bottom: 20px;
+} 
+
 /* Form Layout */
 .admin-form {
   display: flex;
