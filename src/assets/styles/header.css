@@ -44,3 +44,36 @@ nav ul li a {
 nav ul li a:hover {
   color: #D4A373; /* Change color on hover for a warm effect */
 }
+
+/* Hamburger Menu for Small Screens */
+.hamburger {
+  display: none; /* Hide by default */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fafafa;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show the hamburger icon on small screens */
+  }
+
+  nav ul {
+    display: none; /* Hide the menu items by default */
+    flex-direction: column; /* Stack menu items vertically */
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #2F4F2F;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  nav ul.show {
+    display: flex; /* Show the menu when toggled */
+  }
+}
