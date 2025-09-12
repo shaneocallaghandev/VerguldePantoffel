@@ -1,4 +1,4 @@
-.main-container {
+.restauratie-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,21 +12,24 @@
   z-index: 1;
   }
   
-  .text-container {
+ .restauratie-container .info-container {
     display: flex;
-    flex-direction: column; /* Plaats tekstitems onder elkaar */
-    justify-content: center; /* Centreer de tekst verticaal */
-    text-align: left; /* Zorg ervoor dat de tekst links wordt uitgelijnd */
-    margin: 20px; /* Voeg wat ruimte toe rond de tekstcontainer */
+    flex-direction: row; 
+    justify-content: center; 
+    text-align: center; 
+    margin: 20px;
   }
   
-  .main-container img {
+  .restauratie-container img {
     max-width: 70%; /* Zorg ervoor dat de afbeelding niet te groot is */
     height: auto; /* Behoud de aspectratio van de afbeelding */
+    margin: 20px;
+    border-radius: 6px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
 
   .restauratie-wood-background {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;

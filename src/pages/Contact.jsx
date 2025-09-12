@@ -38,26 +38,28 @@ const Contact = () => {
     <div className="contact-container">
       <div className="contact-wood-background"></div>
       {/* Contact Info */}
-      <div className="contact-info">
-        <h2>Restauratie Atelier De Vergulde Pantoffel</h2>
-        <p>Hugo Lammertse </p>
-        <p>Voorstraat 300 3311CW Dordrecht</p>
-        <p>06 50505956 / 078 8436542 </p>
-        <p>
-          Bezichtiging en vrijblijvende offerte op afspraak. Voor vragen en
-          opmerkingen kunt u ons bereiken via:
-        </p>
-        <p><strong>hdllammertse@gmail.com</strong></p>
-        <a href="https://maps.app.goo.gl/mWTTfRakxVViphqk9" target="_blank" rel="noopener noreferrer">
-          Bekijk op Google Maps
-        </a>
-      </div>
+      <div className="info-container">
+        <div className="contact-info">
+          <h2>Restauratie Atelier De Vergulde Pantoffel</h2>
+          <p>Hugo Lammertse </p>
+          <p>Voorstraat 300 3311CW Dordrecht</p>
+          <p>06 50505956 / 078 8436542 </p>
+          <p>
+            Bezichtiging en vrijblijvende offerte op afspraak. Voor vragen en
+            opmerkingen kunt u ons bereiken via:
+          </p>
+          <p><strong>hdllammertse@gmail.com</strong></p>
+          <a href="https://maps.app.goo.gl/mWTTfRakxVViphqk9" target="_blank" rel="noopener noreferrer">
+            Bekijk op Google Maps
+          </a>
+        </div>
 
-      {/* Map */}
-      <div
-        id="map"
-        className="contact-map"
-      ></div>
+        {/* Map */}
+        <div
+          id="map"
+          className="contact-map"
+        ></div>
+      </div>
     </div>
   );
 };
