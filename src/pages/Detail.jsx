@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import "../assets/styles/pages/detail.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchItemsByID } from "../data.js"; // Import the API function to fetch items
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Detail = () => {
   const { id } = useParams(); // Get the item ID from the route parameter
@@ -11,37 +12,37 @@ const Detail = () => {
   const [loading, setLoading] = useState(true); // State for loading
   const [error, setError] = useState(null); // State for error handling
 
-useEffect(() => {
-  const fetchItem = async () => {
-    setLoading(true);
-    setError(null);
+  useEffect(() => {
+    const fetchItem = async () => {
+      setLoading(true);
+      setError(null);
 
-    // Try to get from cache first
-    const cached = localStorage.getItem(`item-${id}`);
-    if (cached) {
-      const data = JSON.parse(cached);
-      setItem(data);
-      setSelectedImage(data.images[0]);
-      setLoading(false);
-      return;
-    }
+      // Try to get from cache first
+      const cached = localStorage.getItem(`item-${id}`);
+      if (cached) {
+        const data = JSON.parse(cached);
+        setItem(data);
+        setSelectedImage(data.images[0]);
+        setLoading(false);
+        return;
+      }
 
-    // If not cached, fetch from API
-    try {
-      const data = await fetchItemsByID(id);
-      setItem(data);
-      setSelectedImage(data.images[0]);
-      // Save to cache
-      localStorage.setItem(`item-${id}`, JSON.stringify(data));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+      // If not cached, fetch from API
+      try {
+        const data = await fetchItemsByID(id);
+        setItem(data);
+        setSelectedImage(data.images[0]);
+        // Save to cache
+        localStorage.setItem(`item-${id}`, JSON.stringify(data));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchItem();
-}, [id]);
+    fetchItem();
+  }, [id]);
 
   // Navigate to the previous image
   const handlePreviousImage = () => {
@@ -59,7 +60,33 @@ useEffect(() => {
 
   // Render loading, error, or the main content
   if (loading) {
-    return <p>Loading item details...</p>;
+    return (
+      <div className="detail-page">
+        <div className="detail-container">
+          <Skeleton height={40} width={100} style={{ marginBottom: "20px" }} />
+          <div className="detail-card">
+            <div className="image-container">
+              <Skeleton height={300} width={400} />
+              <div className="thumbnail-container">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    height={50}
+                    width={50}
+                    style={{ margin: "5px" }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="detail-info">
+              <Skeleton height={30} width={200} style={{ marginBottom: "10px" }} />
+              <Skeleton height={20} width={300} count={3} />
+              <Skeleton height={20} width={150} style={{ marginTop: "10px" }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
@@ -74,7 +101,7 @@ useEffect(() => {
     <div className="detail-page">
       <div className="detail-container">
         <button className="back-button" onClick={() => window.history.back()}>
-        Terug 
+          Terug
         </button>
 
         <div className="detail-card">
@@ -82,40 +109,42 @@ useEffect(() => {
             <button className="arrow-button left-arrow" onClick={handlePreviousImage}>
               &#8592;
             </button>
-           {/* Main Image */}
-           <img src={selectedImage} alt={item.name} className="detail-image" />
+            {/* Main Image */}
+            <img src={selectedImage} alt={item.name} className="detail-image" />
             <button className="arrow-button right-arrow" onClick={handleNextImage}>
               &#8594;
             </button>
-           {/* Thumbnails */}
-              <div className="thumbnail-container">
+            {/* Thumbnails */}
+            <div className="thumbnail-container">
               {item.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
-                className={`thumbnail ${
-                  selectedImage === image ? "active-thumbnail" : ""
-                }`}
-                onClick={() => setSelectedImage(image)} // Set the clicked image as the main image
-              />
-               ))}
-              </div>
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  className={`thumbnail ${
+                    selectedImage === image ? "active-thumbnail" : ""
+                  }`}
+                  onClick={() => setSelectedImage(image)} // Set the clicked image as the main image
+                />
+              ))}
+            </div>
           </div>
-    
+
           <div className="detail-info">
             <h2>{item.name}</h2>
             <p>{item.description}</p>
-            <p><strong>Categorie:</strong> {item.category}</p>
-            <p><strong>Prijs:</strong>{" "}
-            {new Intl.NumberFormat("nl-NL", {
-              style: "currency",
-              currency: "EUR",
-            }).format(item.price)}
+            <p>
+              <strong>Categorie:</strong> {item.category}
             </p>
-          </div> 
+            <p>
+              <strong>Prijs:</strong>{" "}
+              {new Intl.NumberFormat("nl-NL", {
+                style: "currency",
+                currency: "EUR",
+              }).format(item.price)}
+            </p>
+          </div>
         </div>
-        {/* <button className = "volgende">Volgende</button> */}
       </div>
     </div>
   );

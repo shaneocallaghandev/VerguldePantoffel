@@ -40,6 +40,7 @@
 .welcome-text-box {
   flex: 1; /* Allow the text box to take up proportional space */
   max-width: 300px; /* Limit the width of the text box */
+  min-width: 280px;
   padding: 20px; /* Add padding inside the box */
   font-family: "Georgia", serif; /* Use a nice serif font */
   margin-right: 120px; /* Add spacing between the text box and the carousel */

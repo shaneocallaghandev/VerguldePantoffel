@@ -16,7 +16,7 @@
   
 .card {
   position: relative;
-  width: 200px; /* Set a fixed width for the card */
+  width: 202px; /* Set a fixed width for the card */
   height: 300px; /* Set a fixed height for the card */
   overflow: hidden; /* Ensure content stays within the card */
   border-radius: 8px; /* Optional: Rounded corners */

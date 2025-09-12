@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,19 +8,31 @@ import image4 from "../assets/images/4.jpg";
 import image1 from "../assets/images/1.jpg";
 import welkomFoto from "../assets/images/welkomfoto_0.jpg";
 import { fetchItems } from "../data";
+import Skeleton from "react-loading-skeleton";
 
 
 const Home = () => {
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-      const images = [image1, image2, image4, welkomFoto];
-      images.forEach(src => {
-        const img = new window.Image();
-        img.src = src;
-      });
 
+    const images = [image1, image2, image4, welkomFoto];
+    let loadedImages = 0;
+
+    // Preload images
+    images.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        loadedImages++;
+        if (loadedImages === images.length) {
+          setLoading(false); // Set loading to false when all images are loaded
+        }
+      };
+    });
     window.dispatchEvent(new Event("resize")); // Trigger a resize event to fix slick width issues
-        // Prefetch items for the Verkoop page
+
+    // Prefetch items for the Verkoop page
     const prefetchItems = async () => {
       try {
         const items = await fetchItems(); // Fetch items from the database
@@ -54,18 +66,24 @@ const Home = () => {
         <p>Gevestigd in het hart van historisch Dordrecht.</p>
       </div>
 
-      <Carousel {...settings} className="home-carousel">
-        <div>
-        <img src={image1} alt="Impressie 1" loading="lazy" />
-        </div>
-        <div>
-        <img src={image2} alt="Impressie 2" loading="lazy" />
-        </div>
-        <div>
-        <img src={image4} alt="Impressie 4" loading="lazy" />
-        </div>
-      </Carousel>
-    </div>
+        {loading ? (
+          <div className="home-carousel">
+            <Skeleton height={400} />
+          </div>
+        ) : (
+          <Carousel {...settings} className="home-carousel">
+            <div>
+              <img src={image1} alt="Impressie 1" loading="lazy" />
+            </div>
+            <div>
+              <img src={image2} alt="Impressie 2" loading="lazy" />
+            </div>
+            <div>
+              <img src={image4} alt="Impressie 4" loading="lazy" />
+            </div>
+          </Carousel>
+        )}
+      </div>
 
     <div className="info-container">
         <div className="info-text">
