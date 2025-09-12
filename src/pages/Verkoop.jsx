@@ -45,11 +45,14 @@ const Verkoop = () => {
   // Get unique categories from the fetched items
   const categories = ["All", ...new Set(items.map((item) => item.category))];
 
+// Sort items by newest date first
+const sortedItems = [...items].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+
   // Filter items based on the selected category
   const filteredItems =
     selectedCategory === "All"
-      ? items
-      : items.filter((item) => item.category === selectedCategory);
+      ? sortedItems
+      : sortedItems.filter((item) => item.category === selectedCategory);
 
   // Truncate text for item descriptions
   const truncateText = (text, maxLength) => {
@@ -69,7 +72,7 @@ const Verkoop = () => {
       <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 custom-sidebar">
         <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
           <a className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span className="fs-5 d-none d-sm-inline">Categorieën</span>
+            <span className="fs-5">Categorieën</span>
           </a>
           <ul
             className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -90,7 +93,7 @@ const Verkoop = () => {
                     width: "100%",
                   }}
                 >
-                  <span className="ms-1 d-none d-sm-inline">{category}</span>
+                  <span className="ms-1">{category}</span>
                 </button>
               </li>
             ))}

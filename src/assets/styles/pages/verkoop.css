@@ -127,3 +127,28 @@
 .min-vh-100 {
   min-height: 100vh; /* Ensure the sidebar spans the full viewport height */
 }
+
+
+@media (max-width: 580px) {
+  .custom-sidebar {
+    width: 120px !important; /* Reduce sidebar width */
+    padding: 5px; /* Reduce padding */
+  }
+
+  .custom-sidebar .nav-link {
+    font-size: 0.8rem; /* Reduce font size for links */
+    padding: 5px; /* Adjust padding for smaller links */
+  }
+
+  .custom-sidebar .fs-5 {
+    font-size: 0.9rem; /* Reduce the size of the "Categorieën" title */
+  }
+
+  .custom-sidebar .nav-item {
+    margin-bottom: 5px; /* Reduce spacing between items */
+  }
+
+  .container {
+    margin-left: 130px !important; /* Adjust main content margin to match sidebar width */
+  }
+}
