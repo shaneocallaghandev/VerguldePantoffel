@@ -21,6 +21,10 @@
     background-color: #f4f4f4;
     font-weight: bold;
   }
+
+  .admin-table th.sortable {
+  cursor: pointer;
+  }
   
   .admin-table tr:nth-child(even) {
     background-color: #f9f9f9;

@@ -16,6 +16,8 @@ const BeheerPage = () => {
   const [editingItem, setEditingItem] = useState(null); // State to track the item being edited
   const [formData, setFormData] = useState({}); // State to store form data
   const [imageOrder, setImageOrder] = useState([]); // State to track the order of images
+  const [sortBy, setSortBy] = useState("dateAdded"); // default sort
+  const [sortOrder, setSortOrder] = useState("desc"); // "asc" or "desc"
 
   useEffect(() => {
     const getItems = async () => {
@@ -32,6 +34,41 @@ const BeheerPage = () => {
     getItems();
   }, []);
 
+    const handleSort = (field) => {
+      if (sortBy === field) {
+        setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      } else {
+        setSortBy(field);
+        setSortOrder("asc");
+      }
+    };
+
+    const sortedItems = [...items].sort((a, b) => {
+    let valA = a[sortBy];
+    let valB = b[sortBy];
+
+    if (sortBy === "dateAdded") {
+      valA = new Date(valA);
+      valB = new Date(valB);
+    }
+    if (sortBy === "favorite" || sortBy === "sold") {
+      valA = valA ? 1 : 0;
+      valB = valB ? 1 : 0;
+    }
+    if (sortBy === "name") {
+      valA = valA ? valA.toLowerCase() : "";
+      valB = valB ? valB.toLowerCase() : "";
+    }
+
+    if (valA < valB) return sortOrder === "asc" ? -1 : 1;
+    if (valA > valB) return sortOrder === "asc" ? 1 : -1;
+    return 0;
+  });
+
+  const getSortArrow = (field) => {
+    if (sortBy !== field) return ""; // Not the active sort column
+    return sortOrder === "asc" ? " ▲" : " ▼";
+  };
 
   const handleEdit = (item) => {
     setEditingItem(item); // Set the item being edited
@@ -87,6 +124,8 @@ const handleDragEnd = (event) => {
           item._id === updatedItem._id ? updatedItem : item
         )
       );
+
+      localStorage.removeItem(`item-${updatedItem._id}`); // Clear cache for this item
 
       alert("Item updated successfully!");
       setEditingItem(null); // Close the edit modal
@@ -207,18 +246,26 @@ const handleDragEnd = (event) => {
         <thead>
           <tr>
             <th>Image</th>
-            <th>Titel</th>
+            <th className="sortable" onClick={() => handleSort("name")}>
+              Titel{getSortArrow("name")}
+            </th>
             <th>Beschrijving</th>
             <th>Prijs</th>
             <th>Categorie</th>
-            <th>Datum</th>
+            <th className="sortable" onClick={() => handleSort("dateAdded")}>
+              Datum{getSortArrow("dateAdded")}
+            </th>
             <th>Acties</th>
-            <th>Favoriet</th>
-            <th>Verkocht</th>
+            <th className="sortable" onClick={() => handleSort("favorite")}>
+              Favoriet{getSortArrow("favorite")}
+            </th>
+            <th className="sortable" onClick={() => handleSort("sold")}>
+              Verkocht{getSortArrow("sold")}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
+          {sortedItems.map((item) => (
             <tr key={item._id}>
               <td>
                 {item.images && item.images.length > 0 ? (

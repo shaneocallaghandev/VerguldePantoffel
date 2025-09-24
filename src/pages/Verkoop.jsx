@@ -16,17 +16,20 @@ const Verkoop = () => {
     localStorage.getItem("selectedCategory") || "All"
   );
 
-  // Fetch items from the API when the component mounts
   useEffect(() => {
+    // 1. Show cached data immediately if available
+    const cachedItems = localStorage.getItem("items");
+    if (cachedItems) {
+      setItems(JSON.parse(cachedItems));
+      setLoading(false);
+    }
+
+    // 2. Always fetch fresh data in the background
     const getItems = async () => {
       try {
-        const cachedItems = localStorage.getItem("items");
-        if (cachedItems) {
-          setItems(JSON.parse(cachedItems)); // Use cached items
-        } else {
-          const fetchedItems = await fetchItems(); // Fetch from the database
-          setItems(fetchedItems);
-        }
+        const fetchedItems = await fetchItems();
+        setItems(fetchedItems);
+        localStorage.setItem("items", JSON.stringify(fetchedItems));
       } catch (err) {
         setError(err.message);
       } finally {
