@@ -173,3 +173,96 @@
     width: 100%; /* Full width for both sections */
   }
 }
+
+/* Suggestion dropdown styling */
+.ReactTags__suggestions {
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #b2ebf2;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 320px;
+  margin-top: 4px;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.ReactTags__suggestions ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ReactTags__suggestions li {
+  padding: 10px 16px;
+  color: #866b34;
+  cursor: pointer; /* Mouse pointer on hover */
+  transition: background 0.2s, color 0.2s;
+}
+
+.ReactTags__suggestions li:hover,
+.ReactTags__suggestions li.ReactTags__activeSuggestion {
+  background: #e0f7fa;
+  color: #755514;
+}
+
+/* Optional: Make the input field stand out */
+.ReactTags__tagInputField {
+  border: 1px solid #b2ebf2;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.ReactTags__tagInputField:focus {
+  border-color: #007b7f;
+  outline: none;
+}
+/* Category Tags Container */
+.category-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Individual Tag */
+.category-tag {
+  display: flex;
+  align-items: center;
+  background: #bca26c;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+
+.category-tag:hover {
+  background: #7c7c65;
+}
+
+/* Remove Button */
+.category-tag-remove {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-left: 8px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.category-tag-remove:hover {
+  color: #d32f2f;
+}
+
+.ReactTags__tag {
+  display: none;
+}

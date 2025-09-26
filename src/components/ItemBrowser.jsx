@@ -11,7 +11,10 @@ ItemBrowser.propTypes = {
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       sold: PropTypes.bool.isRequired,
-      category: PropTypes.string.isRequired,
+      category: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+      ]).isRequired,
     })
   ).isRequired,
 };
@@ -38,7 +41,10 @@ const ItemBrowser = ({ items }) => {
                 }).format(item.price)}
               </p>
               <p className="card-category">
-                <strong>Categorie:</strong> {item.category}
+                <strong>Categorie:</strong>{" "}
+                {Array.isArray(item.category)
+                  ? item.category.join(", ")
+                  : item.category}
               </p>
             </div>
           </div>

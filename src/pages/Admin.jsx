@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { WithContext as ReactTags } from 'react-tag-input';
 import "../assets/styles/pages/Admin.css"; // Import your CSS file for styling
 
 const Admin = () => {
@@ -6,7 +7,7 @@ const Admin = () => {
     name: "",
     description: "",
     price: "",
-    category: "",
+    category: [],
     images: [],
     favorite: false,
   });
@@ -14,6 +15,7 @@ const Admin = () => {
   const [uploading, setUploading] = useState(false);
   const [files, setFiles] = useState([]); // Store selected files before uploading
   const [previews, setPreviews] = useState([]); // Store image preview URLs
+  const [categoryTags, setCategoryTags] = useState([]);
 
   const categories = [
     "Beelden",
@@ -33,6 +35,28 @@ const Admin = () => {
     "Vazen",
     "Verlichting",
   ];
+  // Categories
+      // Convert tags to array of strings for newItem
+      useEffect(() => {
+        setNewItem(prev => ({
+          ...prev,
+          category: categoryTags.map(tag => tag.text)
+        }));
+      }, [categoryTags]);
+
+      const handleDelete = i => {
+        setCategoryTags(categoryTags.filter((tag, index) => index !== i));
+      };
+
+      const handleAddition = tag => {
+        // Capitalize first letter
+        const formattedTag = tag.text.charAt(0).toUpperCase() + tag.text.slice(1);
+        // Prevent duplicates
+        if (!categoryTags.some(t => t.text === formattedTag)) {
+          setCategoryTags([...categoryTags, { id: formattedTag, text: formattedTag }]);
+        }
+      };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,7 +88,7 @@ const Admin = () => {
   const handleAddItem = async (e) => {
     e.preventDefault();
 
-    if (!newItem.name || !newItem.description || !newItem.price || !newItem.category) {
+    if (!newItem.name || !newItem.description || !newItem.price || !newItem.category.length) {
       alert("Please fill out all fields.");
       return;
     }
@@ -113,7 +137,7 @@ const Admin = () => {
         name: "",
         description: "",
         price: "",
-        category: "",
+        category: [],
         images: [],
         favorite: false,
       });
@@ -173,15 +197,31 @@ const Admin = () => {
             />
           </div>
           <div>
-            <label>Categorie:</label>
-            <input
-              type="text"
-              name="category"
-              value={newItem.category}
-              onChange={handleChange}
-              list="categories"
-              required
+            <label>Categorie(ën):</label>
+            <ReactTags
+              tags={categoryTags}
+              suggestions={categories.map(cat => ({ id: cat, text: cat }))}
+              handleDelete={handleDelete}
+              handleAddition={handleAddition}
+              placeholder="Kies uit de lijst of typ en druk op enter"
+              allowNew
             />
+                  {/* Custom tag layout */}
+            <div className="category-tags-container">
+              {categoryTags.map((tag, idx) => (
+                <span className="category-tag" key={idx}>
+                  {tag.text}
+                  <button
+                    type="button"
+                    className="category-tag-remove"
+                    onClick={() => handleDelete(idx)}
+                    aria-label={`Verwijder ${tag.text}`}
+                  >
+                    &times;
+                  </button>
+                </span>
+              ))}
+            </div>
             <datalist id="categories">
               {categories.map((category, index) => (
                 <option key={index} value={category} />

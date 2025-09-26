@@ -134,7 +134,10 @@ const Detail = () => {
             <h2>{item.name}</h2>
             <p>{item.description}</p>
             <p>
-              <strong>Categorie:</strong> {item.category}
+              <strong>Categorie:</strong>{" "}
+              {Array.isArray(item.category)
+                ? item.category.join(", ")
+                : item.category}
             </p>
             <p>
               <strong>Prijs:</strong>{" "}

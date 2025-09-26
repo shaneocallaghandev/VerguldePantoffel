@@ -45,17 +45,31 @@ const Verkoop = () => {
     localStorage.setItem("selectedCategory", selectedCategory);
   }, [selectedCategory]);
   
-  // Get unique categories from the fetched items
-  const categories = ["All", ...new Set(items.map((item) => item.category))];
+  const categories = [
+    "All",
+    ...Array.from(
+      new Set(
+        items.flatMap(item =>
+          Array.isArray(item.category) ? item.category : [item.category]
+        )
+      )
+    ),
+  ];
+
 
 // Sort items by newest date first
 const sortedItems = [...items].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
 
-  // Filter items based on the selected category
-  const filteredItems =
-    selectedCategory === "All"
-      ? sortedItems
-      : sortedItems.filter((item) => item.category === selectedCategory);
+// Filter items based on the selected category
+const filteredItems =
+  selectedCategory === "All"
+    ? sortedItems
+    : sortedItems.filter(item =>
+        Array.isArray(item.category)
+          ? item.category.includes(selectedCategory)
+          : item.category === selectedCategory
+      );
+
 
   // Truncate text for item descriptions
   const truncateText = (text, maxLength) => {
@@ -135,7 +149,8 @@ const sortedItems = [...items].sort((a, b) => new Date(b.dateAdded) - new Date(a
                       {truncateText(item.description, 100)}
                     </p>
                     <p className="card-category">
-                      <strong>Categorie:</strong> {item.category}
+                      <strong>Categorie:</strong> {" "}
+                      {Array.isArray(item.category) ? item.category.join(", ") : item.category}
                     </p>
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-price">

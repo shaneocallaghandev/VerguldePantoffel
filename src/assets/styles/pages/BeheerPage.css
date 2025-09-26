@@ -148,3 +148,47 @@
   border-radius: 5px;
   cursor: grab;
 }
+
+/* Individual Tag */
+.category-tag {
+  display: flex;
+  align-items: center;
+  background: #bca26c;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 4px 12px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+
+.category-tag:hover {
+  background: #7c7c65;
+}
+
+.category-tag-remove {
+  background: none !important;
+  border: none !important;
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-left: 8px;
+  cursor: pointer;
+  padding: 0 !important;         /* Remove extra padding */
+  border-radius: 0 !important;   /* Remove border radius */
+  box-shadow: none !important;   /* Remove any shadow */
+  min-width: 0 !important;       /* Prevent minimum width */
+  width: auto !important;        /* Let width fit content */
+  height: auto !important;       /* Let height fit content */
+  display: inline;               /* Inline with text */
+  transition: color 0.2s;
+}
+
+.category-tag-remove:hover {
+  color: #d32f2f;
+}
+
+.ReactTags__tag {
+  display: none;
+}

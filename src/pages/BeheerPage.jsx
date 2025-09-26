@@ -8,6 +8,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "../components/SortableItem"; // Custom component for sortable items
+import { WithContext as ReactTags } from 'react-tag-input';
+
 
 const BeheerPage = () => {
   const [items, setItems] = useState([]); // State to store fetched items
@@ -18,6 +20,48 @@ const BeheerPage = () => {
   const [imageOrder, setImageOrder] = useState([]); // State to track the order of images
   const [sortBy, setSortBy] = useState("dateAdded"); // default sort
   const [sortOrder, setSortOrder] = useState("desc"); // "asc" or "desc"
+
+  
+  const categories = [
+    "Beelden", "Buffetkasten", "Diversen", "Grafiek", "Haardplaten/ijzers",
+    "Kandelaars", "Kasten", "Religieuze kunst/kruizen", "Retro/Vintage",
+    "Schalen/Servies", "Sieraden", "Spiegels", "Tafels", "Tuin", "Vazen", "Verlichting"
+  ];
+
+  // State for tag input in modal
+  const [categoryTags, setCategoryTags] = useState([]);
+
+  // When opening modal, sync tags with formData
+  useEffect(() => {
+    if (editingItem) {
+      setCategoryTags(
+        Array.isArray(editingItem.category)
+          ? editingItem.category.map(cat => ({ id: cat, text: cat }))
+          : editingItem.category
+          ? [{ id: editingItem.category, text: editingItem.category }]
+          : []
+      );
+    }
+  }, [editingItem]);
+
+  // Update formData when tags change
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      category: categoryTags.map(tag => tag.text)
+    }));
+  }, [categoryTags]);
+
+  const handleTagDelete = i => {
+    setCategoryTags(categoryTags.filter((tag, idx) => idx !== i));
+  };
+
+  const handleTagAddition = tag => {
+    const formattedTag = tag.text.charAt(0).toUpperCase() + tag.text.slice(1);
+    if (!categoryTags.some(t => t.text === formattedTag)) {
+      setCategoryTags([...categoryTags, { id: formattedTag, text: formattedTag }]);
+    }
+};
 
   useEffect(() => {
     const getItems = async () => {
@@ -73,7 +117,14 @@ const BeheerPage = () => {
   const handleEdit = (item) => {
     setEditingItem(item); // Set the item being edited
     setFormData(item); // Pre-fill the form with the item's details
-    setImageOrder(item.images || []); // Initialize the image order with the item's images
+    // Ensure categoryTags is always an array of tag objects
+    const cats = Array.isArray(item.category)
+      ? item.category
+      : item.category
+      ? [item.category]
+      : [];
+    setCategoryTags(cats.map(cat => ({ id: cat, text: cat })));
+    setImageOrder(item.images || []);
   };
 
   const handleFormChange = (e) => {
@@ -281,7 +332,10 @@ const handleDragEnd = (event) => {
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>€{item.price}</td>
-              <td>{item.category}</td>
+              <td>  {Array.isArray(item.category)
+                    ? item.category.join(", ")
+                    : item.category}
+              </td>
               <td>{item.dateAdded ? formatDate(item.dateAdded) : "N/A"}</td>
               <td>
                 <button
@@ -354,14 +408,34 @@ const handleDragEnd = (event) => {
             </label>
             <label>
               Category:
-              <input
-                type="text"
-                name="category"
-                value={formData.category || ""}
-                onChange={handleFormChange}
+              <ReactTags
+                tags={categoryTags}
+                suggestions={categories.map(cat => ({ id: cat, text: cat }))}
+                handleDelete={handleTagDelete}
+                handleAddition={handleTagAddition}
+                placeholder="Typ en druk op enter, of kies uit de lijst"
+                allowNew
               />
             </label>
-
+            {/* Move this OUTSIDE the label */}
+            <div className="category-tags-container">
+              {categoryTags.map((tag, idx) => (
+                <span className="category-tag" key={idx}>
+                  {tag.text}
+                  <button
+                    type="button"
+                    className="category-tag-remove"
+                    onClick={e => {
+                      e.stopPropagation(); // Prevent bubbling to parent
+                      handleTagDelete(idx);
+                    }}
+                    aria-label={`Verwijder ${tag.text}`}
+                  >
+                    &times;
+                  </button>
+                </span>
+              ))}
+            </div>
             {/* Drag-and-Drop for Images */}
             <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
               <SortableContext items={imageOrder} strategy={verticalListSortingStrategy}>
