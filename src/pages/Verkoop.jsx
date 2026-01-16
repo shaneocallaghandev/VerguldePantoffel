@@ -58,7 +58,18 @@ const Verkoop = () => {
 
 
 // Sort items by newest date first
-const sortedItems = [...items].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+// Sort: favorites first, then newest date
+const sortedItems = [...items].sort((a, b) => {
+    const favA = a.favorite ? 1 : 0;
+    const favB = b.favorite ? 1 : 0;
+    if (favA !== favB) return favB - favA; // favorites (1) come before non-favorites (0)
+    // Compare by dateAdded (newest first). Handle missing/invalid dates.
+    const dateA = a.dateAdded ? new Date(a.dateAdded).getTime() : 0;
+    const dateB = b.dateAdded ? new Date(b.dateAdded).getTime() : 0;
+    if (dateA !== dateB) return dateB - dateA;
+    // Fallback deterministic tie-breaker
+    return (a.name || "").localeCompare(b.name || "");
+});
 
 // Filter items based on the selected category
 const filteredItems =
