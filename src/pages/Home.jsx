@@ -6,6 +6,7 @@ import "../assets/styles/pages/home.css";
 import image2 from "../assets/images/2.jpg";
 import image4 from "../assets/images/4.jpg";
 import image1 from "../assets/images/1.jpg";
+import imageHistorie from "../assets/images/historie_0.jpg";
 import welkomFoto from "../assets/images/welkomfoto_0.jpg";
 import { fetchItems } from "../data";
 import Skeleton from "react-loading-skeleton";
@@ -87,8 +88,9 @@ const Home = () => {
 
     <div className="info-container">
         <div className="info-text">
+          <h3>Welkom..</h3>
         <p>
-        Welkom op de website van De Vergulde Pantoffel. Al vijf en twintig jaar restaureer en verkoop ik antiek design en verlichting. Tevens heb ik in opdracht veel tafels gemaakt van kersen, noten of eikenhout.
+        op de website van De Vergulde Pantoffel. Al vijf en twintig jaar restaureer en verkoop ik antiek design en verlichting. Tevens heb ik in opdracht veel tafels gemaakt van kersen, noten of eikenhout.
         Voor alle (antiek) meubelrestauraties van fineer tot politoerschade kunt u in mijn atelier te Dordrecht terecht.
         Elk meubel wordt voor u persoonlijk in orde gemaakt en in uw interieur geplaatst waarbij eventuele specifieke aanpassingen aan de indeling uitvoerig met u besproken worden.
         </p>
@@ -100,6 +102,30 @@ const Home = () => {
         <div className="info-image-container">
         <img src={welkomFoto} alt="Welkom Foto" className="info-image" loading="lazy" />
         </div>
+    </div>
+
+    <div className="info-container">
+      <div className="info-text">
+        <h3>De &apos;De Vergulde Pantoffel&apos;</h3>
+        <p>
+        Toen ik vijf en twintig jaar geleden mijn bedrijf startte zocht ik naar een naam die 
+        beklijft en ook nog een associatie met mijn werk geeft. Denkend aan de &apos;antieke&apos; 
+        meubelen, lampen, spiegels enz. die ik restaureer kwam ik tot de conclusie, dat het feitelijk voorwerpen 
+        betreft die vroeger tot de basis van een gewoon middenklasse
+        huishouden behoorden.
+        Die &apos;pantoffels&apos; van vroeger noemen wij nu &apos;antiek&apos;. 
+        De pantoffels van vroeger hebben door hun leeftijd en geschiedenis een &apos;gulden&apos;
+         randje voor ons gekregen...      
+        </p>
+        <p>
+          De Louis Philippe kasten die veelal uit de Mayenne in Midden-Frankrijk komen maakten vaak deel uit van de bruidsschat. 
+          Deze bestond dan uit een linnenkast, een keukenbuffet met opbouw 
+          (een zogenaamde &apos;Deux Corps&apos;) en een hoekbed met een nachtkastje waarin de piespot zat.
+        </p>
+      </div>
+      <div className="info-image-container">
+        <img src={imageHistorie} alt="Historie Foto" className="info-image" loading="lazy" />
+      </div>
     </div>
 
     <div className ="home-to-verkoop-router">
