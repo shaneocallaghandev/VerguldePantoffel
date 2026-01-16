@@ -141,10 +141,14 @@ const Detail = () => {
             </p>
             <p>
               <strong>Prijs:</strong>{" "}
-              {new Intl.NumberFormat("nl-NL", {
-                style: "currency",
-                currency: "EUR",
-              }).format(item.price)}
+                      {item.sold ? (
+                        <em>Verkocht</em>
+                      ) : (
+                        new Intl.NumberFormat("nl-NL", {
+                          style: "currency",
+                          currency: "EUR",
+                        }).format(item.price)
+                      )}
             </p>
           </div>
         </div>

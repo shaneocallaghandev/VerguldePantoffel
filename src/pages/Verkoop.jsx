@@ -154,10 +154,14 @@ const filteredItems =
                     </p>
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-price">
-                      {new Intl.NumberFormat("nl-NL", {
-                        style: "currency",
-                        currency: "EUR",
-                      }).format(item.price)}
+                      {item.sold ? (
+                        <em>Verkocht</em>
+                      ) : (
+                        new Intl.NumberFormat("nl-NL", {
+                          style: "currency",
+                          currency: "EUR",
+                        }).format(item.price)
+                      )}
                     </p>
                   </div>
                 </div>
