@@ -259,9 +259,18 @@ const Admin = () => {
               ))}
             </ul>
           </div>
-          <button type="button" onClick={handleClearLastImage} className="clear-last-image-button"         >
-           Delete Image </button>
-          <button type="submit" className="add-item-button">Add Item</button>
+            <button type="button" onClick={handleClearLastImage} className="clear-last-image-button"         >
+              Delete Image </button>
+            <button type="submit" className="add-item-button">Add Item</button>
+
+          <div className ="category-list-info">
+            <h6>Beschikbare Categorieën:</h6>
+            <ul>
+              {categories.map((category, index) => (
+                <li key={index}>{category}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </form>
     </div>
