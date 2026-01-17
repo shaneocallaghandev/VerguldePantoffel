@@ -94,6 +94,16 @@ const filteredItems =
     return <div>Error: {error}</div>;
   }
 
+  // compute counts per category once per render
+const categoryCounts = items.reduce((acc, item) => {
+  const cats = Array.isArray(item.category) ? item.category : item.category ? [item.category] : [];
+  cats.forEach((c) => {
+    acc[c] = (acc[c] || 0) + 1;
+  });
+  return acc;
+}, {});
+
+
   return (
     <div className="main-container d-flex flex-row align-items-center">
       {/* Sidebar */}
@@ -121,7 +131,9 @@ const filteredItems =
                     width: "100%",
                   }}
                 >
-                  <span className="ms-1">{category}</span>
+                  <span className="ms-1">{category}
+                    <small className="category-count">{category === "All" ? items.length : (categoryCounts[category] || 0)}</small>
+                  </span>
                 </button>
               </li>
             ))}

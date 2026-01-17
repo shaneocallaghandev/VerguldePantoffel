@@ -106,6 +106,15 @@
   padding: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 1.5); /* Optional: Add a subtle shadow */
   z-index: 1000; /* Ensure the sidebar stays on top of other content */
+  overflow: auto;
+    scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
+}
+
+.custom-sidebar .category-count {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-left: 4px;
 }
 
 .nav-link {
@@ -134,6 +143,9 @@
     width: 120px !important; /* Reduce sidebar width */
     padding: 5px; /* Reduce padding */
   }
+  .custom-sidebar::-webkit-scrollbar {
+   width: 6px;
+  }
 
   .custom-sidebar .nav-link {
     font-size: 0.8rem; /* Reduce font size for links */
@@ -151,4 +163,23 @@
   .container {
     margin-left: 130px !important; /* Adjust main content margin to match sidebar width */
   }
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+.custom-sidebar::-webkit-scrollbar {
+  width: 8px; /* smaller width */
+}
+.custom-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 8px;
+  border: 2px solid transparent; /* creates padding around thumb */
+  background-clip: padding-box;
+}
+
+/* Make thumb more visible when user hovers the sidebar */
+.custom-sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.5);
 }
