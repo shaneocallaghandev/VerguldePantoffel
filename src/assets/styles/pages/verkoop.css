@@ -105,9 +105,9 @@
   border-radius: 0 2px 15px 0; /* Rounded corners on the right side */
   padding: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 1.5); /* Optional: Add a subtle shadow */
-  z-index: 1000; /* Ensure the sidebar stays on top of other content */
+  z-index: 900;
   overflow: auto;
-    scrollbar-width: thin;
+  scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.25) transparent;
 }
 
@@ -162,6 +162,17 @@
 
   .container {
     margin-left: 130px !important; /* Adjust main content margin to match sidebar width */
+  }
+
+  /* Make cards/images smaller on mobile */
+  .card {
+    width: 160px; /* Reduced from 202px */
+    height: 240px; /* Reduced from 300px */
+  }
+
+  .card-img {
+    max-height: 240px; /* Match new card height */
+    min-height: 240px;
   }
 }
 

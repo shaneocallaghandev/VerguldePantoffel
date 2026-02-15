@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,12 +8,15 @@ import image4 from "../assets/images/4.jpg";
 import image1 from "../assets/images/1.jpg";
 import imageHistorie from "../assets/images/historie_0.jpg";
 import welkomFoto from "../assets/images/welkomfoto_0.jpg";
+import downArrow from "../assets/images/down-arrow.png";
 import { fetchItems } from "../data";
 import Skeleton from "react-loading-skeleton";
 
 
 const Home = () => {
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [showArrow, setShowArrow] = useState(true);
+  const infoContainerRef = useRef(null); 
 
   useEffect(() => {
 
@@ -44,7 +47,33 @@ const Home = () => {
     };
 
     prefetchItems();
+
+    // Handle scroll to show/hide arrow
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      // Hide arrow if scrolled past 150px
+      if (scrollPosition > 150) {
+        setShowArrow(false);
+      } else {
+        setShowArrow(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const scrollToInfo = () => {
+    if (infoContainerRef.current) {
+      infoContainerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  };
 
   const settings = {
     dots: true,
@@ -86,7 +115,13 @@ const Home = () => {
         )}
       </div>
 
-    <div className="info-container">
+    {showArrow && (
+      <div className="arrow-container" onClick={scrollToInfo}>
+        <img src={downArrow} alt="Scroll down" className="scroll-arrow" />
+      </div>
+    )}
+
+    <div className="info-container" ref={infoContainerRef}>
         <div className="info-text">
           <h3>Welkom..</h3>
         <p>

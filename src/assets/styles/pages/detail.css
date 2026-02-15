@@ -48,6 +48,10 @@
     padding: 20px;
   }
 
+  .image-container {
+    position: relative;
+  }
+
   .detail-image {
     border-radius: 8px;
     max-height: 400px; /* Limit the height of the image container */
@@ -117,4 +121,147 @@
   font-size: 1.1rem;
   padding: 1px 8px;
   margin: 5px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .detail-page {
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding: 80px 10px 20px;
+    overflow-y: auto;
+  }
+
+  .detail-container {
+    margin-top: 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .back-button {
+    padding: 12px 20px;
+    font-size: 15px;
+    touch-action: manipulation;
+    margin-bottom: 15px;
+    align-self: flex-start;
+  }
+
+  .detail-card {
+    flex-direction: column;
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .image-container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .detail-image {
+    max-height: 350px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 15px;
+    object-fit: contain;
+  }
+
+  .thumbnail-container {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px 0;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .thumbnail {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+  }
+
+  .detail-info {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 0;
+    padding: 0 5px;
+  }
+
+  .detail-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .detail-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+
+  .arrow-button {
+    padding: 10px 15px;
+    font-size: 1.3rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    touch-action: manipulation;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .left-arrow {
+    position: absolute;
+    left: 5px;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .right-arrow {
+    position: absolute;
+    right: 5px;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-page {
+    padding: 70px 5px 15px;
+  }
+
+  .detail-container {
+    padding: 15px;
+  }
+
+  .detail-card {
+    padding: 15px;
+  }
+
+  .detail-image {
+    max-height: 280px;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+
+  .detail-info h2 {
+    font-size: 1.4rem;
+  }
+
+  .detail-info p {
+    font-size: 0.95rem;
+  }
+
+  .arrow-button {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+  }
 }

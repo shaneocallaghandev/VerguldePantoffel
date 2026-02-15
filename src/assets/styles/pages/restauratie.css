@@ -34,9 +34,38 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background-image: url('/images/homeBackgroundWood.jpg'); 
+  background-image: url('/images/homeBackgroundWood.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .restauratie-container {
+    flex-direction: column;
+    padding: 70px 15px 20px;
+  }
+
+  .restauratie-container .info-container {
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .restauratie-container img {
+    max-width: 95%; /* Larger images on mobile */
+    margin: 15px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .restauratie-container {
+    padding: 60px 10px 15px;
+  }
+
+  .restauratie-container img {
+    max-width: 100%;
+    margin: 10px 0;
+  }
 }

@@ -58,22 +58,47 @@ nav ul li a:hover {
 @media (max-width: 768px) {
   .hamburger {
     display: block; /* Show the hamburger icon on small screens */
+    z-index: 10000;
   }
 
   nav ul {
-    display: none; /* Hide the menu items by default */
-    flex-direction: column; /* Stack menu items vertically */
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
     top: 50px;
-    right: 20px;
-    background-color: #2F4F2F;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 10px;
-    z-index: 1000;
+    left: -140px;
+    width: 130px;
+    background-color: rgba(47, 79, 47, 0.98);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 0 8px 8px 0;
+    padding: 15px 0;
+    gap: 0;
+    z-index: 9999;
+    transition: left 0.3s ease;
   }
 
   nav ul.show {
-    display: flex; /* Show the menu when toggled */
+    left: 0;
+  }
+
+  nav ul li {
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(212, 163, 115, 0.3);
+  }
+
+  nav ul li:last-child {
+    border-bottom: none;
+  }
+
+  nav ul li a {
+    padding: 15px 20px;
+    font-size: 15px;
+    width: 100%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  nav ul li a:hover {
+    background-color: rgba(212, 163, 115, 0.15);
   }
 }

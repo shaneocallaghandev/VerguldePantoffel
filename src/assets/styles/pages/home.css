@@ -132,7 +132,7 @@
 .info-container {
   display: flex;
   flex-direction: row;
-  margin-top: 40px; /* Add space above the -container */
+  margin-top: 15px; /* Add space above the -container */
   padding: 20px; /* Add padding for spacing */
   background-color: #f7f5ee; /* Light background color for contrast */
   border-radius: 8px; /* Optional: Rounded corners */
@@ -209,4 +209,181 @@
 .custom-button:hover {
   background-color: #aaa292; /* Darker color on hover */
   color: #fff; /* Ensure text remains readable */
+}
+
+/* Scroll Arrow Styles */
+.arrow-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 100;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-arrow {
+  width: 70px;
+  height: 70px;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.arrow-container:hover .scroll-arrow {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 60px 15px 20px;
+    margin-top: 0;
+  }
+
+  .logoTekst {
+    width: 90%;
+    max-width: 350px;
+    margin-bottom: 15px;
+  }
+
+  .carousel-container {
+    flex-direction: column;
+    width: 95%;
+    align-items: center;
+  }
+
+  .welcome-text-box {
+    max-width: 100%;
+    min-width: auto;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  .welcome-text-box h2 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-text-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .home-carousel {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 60px;
+  }
+
+  .home-container .slick-slider {
+    max-width: 100%;
+  }
+
+  .slick-prev {
+    left: 10px;
+  }
+
+  .slick-next {
+    right: 10px;
+  }
+
+  .info-container {
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding: 15px;
+  }
+
+  .info-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .info-container p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .info-container .info-text {
+    margin-left: 0;
+    margin-top: 15px;
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .home-to-verkoop-router {
+    width: 90%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .custom-button {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+  }
+
+  .arrow-container {
+    bottom: 20px;
+  }
+
+  .scroll-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 50px 10px 15px;
+  }
+
+  .logoTekst {
+    max-width: 280px;
+  }
+
+  .welcome-text-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-text-box p {
+    font-size: 1rem;
+  }
+
+  .home-carousel {
+    margin-bottom: 40px;
+  }
+
+  .info-container {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 12px;
+  }
+
+  .info-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .info-container p {
+    font-size: 0.95rem;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 20px;
+  }
 }
