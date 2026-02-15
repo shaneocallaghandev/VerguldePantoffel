@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../assets/styles/pages/detail.css";
 import { useState, useEffect } from "react";
 import { fetchItemsByID } from "../data.js"; // Import the API function to fetch items
@@ -7,6 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const Detail = () => {
   const { id } = useParams(); // Get the item ID from the route parameter
+  const navigate = useNavigate();
   const [item, setItem] = useState(null); // State to store the fetched item
   const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
   const [loading, setLoading] = useState(true); // State for loading
@@ -56,6 +57,17 @@ const Detail = () => {
     const currentIndex = item.images.indexOf(selectedImage);
     const nextIndex = (currentIndex + 1) % item.images.length;
     setSelectedImage(item.images[nextIndex]);
+  };
+
+  // Handle "Koop" button click
+  const handleKoop = () => {
+    const category = Array.isArray(item.category)
+      ? item.category.join(", ")
+      : item.category;
+
+    const message = `Hierbij wil ik mijn interesse kenbaar maken voor:\n\nItem: ${item.name}\nCategorie: ${category}`;
+
+    navigate("/contact", { state: { prefilledMessage: message } });
   };
 
   // Render loading, error, or the main content
@@ -150,6 +162,11 @@ const Detail = () => {
                         }).format(item.price)
                       )}
             </p>
+            {!item.sold && (
+              <button className="koop-button" onClick={handleKoop}>
+               Geïnteresseerd
+              </button>
+            )}
           </div>
         </div>
       </div>

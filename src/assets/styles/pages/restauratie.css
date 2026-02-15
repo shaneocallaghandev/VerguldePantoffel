@@ -64,6 +64,12 @@
     padding: 60px 10px 15px;
   }
 
+  .custom-button{
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+
   .restauratie-container img {
     max-width: 100%;
     margin: 10px 0;

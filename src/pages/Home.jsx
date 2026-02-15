@@ -141,7 +141,7 @@ const Home = () => {
 
     <div className="info-container">
       <div className="info-text">
-        <h3>De &apos;De Vergulde Pantoffel&apos;</h3>
+        <h3>&apos;De Vergulde Pantoffel&apos;</h3>
         <p>
         Toen ik vijf en twintig jaar geleden mijn bedrijf startte zocht ik naar een naam die 
         beklijft en ook nog een associatie met mijn werk geeft. Denkend aan de &apos;antieke&apos; 

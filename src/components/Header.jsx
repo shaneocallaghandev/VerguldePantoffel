@@ -12,6 +12,10 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -42,16 +46,16 @@ const Header = () => {
       <nav ref={menuRef}>
         <ul className={menuOpen ? "show" : ""}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
           <li>
-            <Link to="/verkoop">Verkoop</Link>
+            <Link to="/verkoop" onClick={closeMenu}>Verkoop</Link>
           </li>
           <li>
-            <Link to="/restauratie">Restauratie</Link>
+            <Link to="/restauratie" onClick={closeMenu}>Restauratie</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" onClick={closeMenu}>Contact</Link>
           </li>
         </ul>
       </nav>

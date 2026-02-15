@@ -3,7 +3,7 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: #004225; /* Soft beige for a warm and cohesive look */
-  z-index: 850; /* Below sidebar to avoid overlap */
+  z-index: 9999; /* Below sidebar to avoid overlap */
   text-align: center; /* Center the text */
   padding: 0px 0; /* Adjust padding as needed */
   color: #f8f6f0; /* Warm brown text color for contrast */
