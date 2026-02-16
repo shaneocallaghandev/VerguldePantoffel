@@ -56,9 +56,15 @@ nav ul li a:hover {
 }
 
 @media (max-width: 768px) {
+  .logo {
+    width: 280px;
+    max-width: 150vw;
+  }
+
   .hamburger {
     display: block; /* Show the hamburger icon on small screens */
     z-index: 10000;
+    padding-left: 0;
   }
 
   nav ul {
@@ -67,11 +73,10 @@ nav ul li a:hover {
     position: fixed;
     top: 50px;
     left: -140px;
-    width: 130px;
+    width: 115px;
     background-color: rgba(47, 79, 47, 0.98);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 0 8px 8px 0;
-    padding: 15px 0;
     gap: 0;
     z-index: 9999;
     transition: left 0.3s ease;
