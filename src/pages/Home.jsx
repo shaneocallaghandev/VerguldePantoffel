@@ -68,10 +68,8 @@ const Home = () => {
 
   const scrollToInfo = () => {
     if (infoContainerRef.current) {
-      infoContainerRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      const y = infoContainerRef.current.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
