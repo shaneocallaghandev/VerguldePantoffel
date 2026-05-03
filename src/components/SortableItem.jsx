@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-export const SortableItem = ({ id, image }) => {
+export const SortableItem = ({ id, image, onRemove }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    position: "relative",
   };
 
   return (
@@ -20,14 +21,25 @@ export const SortableItem = ({ id, image }) => {
       className="image-preview-item"
     >
       <img src={image} alt="Preview" className="sortable-image" />
+      {onRemove && (
+        <button
+          type="button"
+          className="image-remove-button"
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={(e) => { e.stopPropagation(); onRemove(id); }}
+          aria-label="Verwijder foto"
+        >
+          &times;
+        </button>
+      )}
     </li>
   );
 };
 
-// Add propTypes validation
 SortableItem.propTypes = {
-  id: PropTypes.string.isRequired, // Ensure 'id' is a required string
-  image: PropTypes.string.isRequired, // Ensure 'image' is a required string
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  onRemove: PropTypes.func,
 };
 
 export default SortableItem;

@@ -20,6 +20,7 @@ const BeheerPage = () => {
   const [imageOrder, setImageOrder] = useState([]); // State to track the order of images
   const [sortBy, setSortBy] = useState("dateAdded"); // default sort
   const [sortOrder, setSortOrder] = useState("desc"); // "asc" or "desc"
+  const [uploading, setUploading] = useState(false);
 
   
   const categories = [
@@ -134,6 +135,37 @@ const BeheerPage = () => {
       [name]: value,
     }));
   };
+
+const handleAddImages = async (e) => {
+  const files = Array.from(e.target.files);
+  if (!files.length) return;
+
+  setUploading(true);
+  try {
+    const formData = new FormData();
+    files.forEach((file) => formData.append("images", file));
+
+    const response = await fetch("https://verguldepantoffelbe.onrender.com/api/items/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) throw new Error("Upload failed");
+
+    const { imageUrls } = await response.json();
+    setImageOrder((prev) => [...prev, ...imageUrls]);
+  } catch (err) {
+    alert("Failed to upload images.");
+    console.error(err);
+  } finally {
+    setUploading(false);
+    e.target.value = "";
+  }
+};
+
+const handleRemoveImage = (url) => {
+  setImageOrder((prev) => prev.filter((img) => img !== url));
+};
 
 const handleDragEnd = (event) => {
   const { active, over } = event;
@@ -441,11 +473,25 @@ const handleDragEnd = (event) => {
               <SortableContext items={imageOrder} strategy={verticalListSortingStrategy}>
                 <ul className="image-list">
                   {imageOrder.map((image) => (
-                    <SortableItem key={image} id={image} image={image} />
+                    <SortableItem key={image} id={image} image={image} onRemove={handleRemoveImage} />
                   ))}
                 </ul>
               </SortableContext>
             </DndContext>
+            {/* Add new images */}
+            <div className="add-images-section">
+            <label>
+              Foto&apos;s toevoegen:
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleAddImages}
+                disabled={uploading}
+              />
+            </label>
+            {uploading && <p>Uploading...</p>}
+            </div>
 
             <button type="submit">Save</button>
             <button type="button" onClick={() => setEditingItem(null)}>

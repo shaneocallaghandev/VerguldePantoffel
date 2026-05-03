@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { WithContext as ReactTags } from 'react-tag-input';
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
+import { SortableItem } from "../components/SortableItem";
 import "../assets/styles/pages/Admin.css"; // Import your CSS file for styling
 
 const Admin = () => {
@@ -80,9 +83,21 @@ const Admin = () => {
   };
 
 
-  const handleClearLastImage = () => {
-    setFiles((prevFiles) => prevFiles.slice(0, -1)); // Remove the last file
-    setPreviews((prevPreviews) => prevPreviews.slice(0, -1)); // Remove the last preview
+  const handleRemoveImage = (previewUrl) => {
+    const index = previews.indexOf(previewUrl);
+    if (index === -1) return;
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over.id) {
+      const oldIndex = previews.indexOf(active.id);
+      const newIndex = previews.indexOf(over.id);
+      setFiles((prev) => arrayMove(prev, oldIndex, newIndex));
+      setPreviews((prev) => arrayMove(prev, oldIndex, newIndex));
+    }
   };
 
   const handleAddItem = async (e) => {
@@ -251,16 +266,16 @@ const Admin = () => {
               onChange={handleImageSelection}
             />
             {uploading && <p>Uploading images...</p>}
-            <ul className="image-preview-list">
-               {previews.map((preview, index) => (
-                <li key={index} className="image-preview-item">
-                  <img src={preview} alt={`Preview ${index}`} className="image-preview" />
-                </li>
-              ))}
-            </ul>
+            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+              <SortableContext items={previews} strategy={horizontalListSortingStrategy}>
+                <ul className="image-preview-list">
+                  {previews.map((preview) => (
+                    <SortableItem key={preview} id={preview} image={preview} onRemove={handleRemoveImage} />
+                  ))}
+                </ul>
+              </SortableContext>
+            </DndContext>
           </div>
-            <button type="button" onClick={handleClearLastImage} className="clear-last-image-button"         >
-              Delete Image </button>
             <button type="submit" className="add-item-button">Add Item</button>
 
           <div className ="category-list-info">

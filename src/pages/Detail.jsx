@@ -59,6 +59,22 @@ const Detail = () => {
     setSelectedImage(item.images[nextIndex]);
   };
 
+  useEffect(() => {
+    if (!item) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") {
+        const currentIndex = item.images.indexOf(selectedImage);
+        setSelectedImage(item.images[(currentIndex - 1 + item.images.length) % item.images.length]);
+      }
+      if (e.key === "ArrowRight") {
+        const currentIndex = item.images.indexOf(selectedImage);
+        setSelectedImage(item.images[(currentIndex + 1) % item.images.length]);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [item, selectedImage]);
+
   // Handle "Koop" button click
   const handleKoop = () => {
     const category = Array.isArray(item.category)
@@ -118,14 +134,23 @@ const Detail = () => {
 
         <div className="detail-card">
           <div className="image-container">
-            <button className="arrow-button left-arrow" onClick={handlePreviousImage}>
-              &#8592;
-            </button>
-            {/* Main Image */}
-            <img src={selectedImage} alt={item.name} className="detail-image" />
-            <button className="arrow-button right-arrow" onClick={handleNextImage}>
-              &#8594;
-            </button>
+            {/* Main Image + mobile overlay arrows */}
+            <div className="main-image-wrapper">
+              <img src={selectedImage} alt={item.name} className="detail-image" />
+              <div className="arrow-overlay">
+                <button className="arrow-button" onClick={handlePreviousImage}>&#8592;</button>
+                <button className="arrow-button" onClick={handleNextImage}>&#8594;</button>
+              </div>
+            </div>
+            {/* Desktop arrow row between image and thumbnails */}
+            <div className="arrow-row">
+              <button className="arrow-button left-arrow" onClick={handlePreviousImage}>
+                &#8592;
+              </button>
+              <button className="arrow-button right-arrow" onClick={handleNextImage}>
+                &#8594;
+              </button>
+            </div>
             {/* Thumbnails */}
             <div className="thumbnail-container">
               {item.images.map((image, index) => (
@@ -133,10 +158,8 @@ const Detail = () => {
                   key={index}
                   src={image}
                   alt={`Thumbnail ${index + 1}`}
-                  className={`thumbnail ${
-                    selectedImage === image ? "active-thumbnail" : ""
-                  }`}
-                  onClick={() => setSelectedImage(image)} // Set the clicked image as the main image
+                  className={`thumbnail ${selectedImage === image ? "active-thumbnail" : ""}`}
+                  onClick={() => setSelectedImage(image)}
                 />
               ))}
             </div>
