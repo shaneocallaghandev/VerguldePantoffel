@@ -106,6 +106,8 @@ const Contact = () => {
           <h2>Restauratie Atelier De Vergulde Pantoffel</h2>
           <p>Hugo Lammertse </p>
           <p>Voorstraat 300 3311CW Dordrecht</p>
+          <p> Openingstijden: Do, Vr & Za 13:00 - 17:00 </p>
+          <p> Buiten die tijden altijd bereikbaar en woonachtig boven de winkel dus makkelijk een afspraak te maken. </p>
           <p>06 50505956 / 078 8436542 </p>
           <p>
             Bezichtiging en vrijblijvende offerte op afspraak. Voor vragen en
